@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: -color-bg-subtle;" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.LoginController">
+    <children>
+        <VBox alignment="CENTER" maxWidth="380.0" spacing="20.0" styleClass="card">
+            <children>
+                <VBox alignment="CENTER" spacing="6.0">
+                    <children>
+                        <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label text="Bem-vindo">
+                            <styleClass>
+                                <String fx:value="title-2" />
+                            </styleClass>
+                        </Label>
+                        <Label text="Introduza as suas credenciais para prosseguir">
+                            <styleClass>
+                                <String fx:value="text-muted" />
+                            </styleClass>
+                        </Label>
+                    </children>
+                </VBox>
+                <VBox spacing="14.0">
+                    <children>
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="E-mail" />
+                                <TextField fx:id="entradaUser" promptText="Digite o seu e-mail" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="Senha" />
+                                <PasswordField fx:id="entradaSenha" promptText="Digite a sua senha" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+                <Label fx:id="lblErro" managed="false" text="Utilizador ou palavra-passe incorretos" visible="false">
+                    <styleClass>
+                        <String fx:value="danger" />
+                    </styleClass>
+                </Label>
+                <Button fx:id="btnEntrar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Entrar">
+                    <styleClass>
+                        <String fx:value="accent" />
+                        <String fx:value="large" />
+                    </styleClass>
+                </Button>
+
+            </children>
+         <StackPane.margin>
+            <Insets bottom="32.0" top="32.0" />
+         </StackPane.margin>
+         <padding>
+            <Insets left="12.0" right="12.0" />
+         </padding>
+        </VBox>
+    </children>
+</StackPane>
