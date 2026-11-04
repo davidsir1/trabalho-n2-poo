@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefWidth="230.0" spacing="10.0" style="-fx-background-color: -color-bg-subtle; -fx-border-color: -color-border-muted; -fx-border-width: 0 1 0 0;" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.SidebarController">
+    <padding>
+        <Insets bottom="16.0" left="16.0" right="16.0" top="20.0" />
+    </padding>
+    <children>
+        <VBox spacing="2.0">
+            <children>
+                <Label text="Gestão de Adoção">
+                    <styleClass>
+                        <String fx:value="title-4" />
+                        <String fx:value="text-bold" />
+                    </styleClass>
+                </Label>
+            </children>
+        </VBox>
+        <Separator prefWidth="200.0" />
+        <VBox spacing="6.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Dashboard">
+                    <styleClass>
+                        <String fx:value="flat" />
+                    </styleClass>
+                </Button>
+                <Button fx:id="btnAnimais" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Animais">
+                    <styleClass>
+                        <String fx:value="flat" />
+                    </styleClass>
+                </Button>
+                <Button fx:id="btnAdotantes" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Adotantes">
+                    <styleClass>
+                        <String fx:value="flat" />
+                    </styleClass>
+                </Button>
+                <Button fx:id="btnBaias" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Baias &amp; Alocação">
+                    <styleClass>
+                        <String fx:value="flat" />
+                    </styleClass>
+                </Button>
+                <Button fx:id="btnEspecieRaca" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Espécies &amp; Raças">
+                    <styleClass>
+                        <String fx:value="flat" />
+                    </styleClass>
+                </Button>
+                <Separator prefWidth="200.0">
+                    <VBox.margin>
+                        <Insets bottom="6.0" top="6.0" />
+                    </VBox.margin>
+                </Separator>
+                <Button fx:id="btnAdocao" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Registrar Adoção">
+                    <styleClass>
+                        <String fx:value="accent" />
+                    </styleClass>
+                </Button>
+            </children>
+        </VBox>
+        <VBox alignment="BOTTOM_CENTER">
+            <children>
+                <Button fx:id="btnSair" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Sair">
+                    <styleClass>
+                        <String fx:value="danger" />
+                        <String fx:value="button-outlined" />
+                    </styleClass>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+</VBox>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.MainController">
+    <left>
+        <fx:include fx:id="sidebarComponent" source="Sidebar.fxml" />
+    </left>
+    <center>
+        <StackPane fx:id="conteudoArea" style="-fx-background-color: -color-bg-default;" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>

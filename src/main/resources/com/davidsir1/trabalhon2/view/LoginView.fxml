@@ -50,7 +50,7 @@
                         <String fx:value="danger" />
                     </styleClass>
                 </Label>
-                <Button fx:id="btnEntrar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Entrar">
+                <Button fx:id="btnEntrar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#entrar" text="Entrar">
                     <styleClass>
                         <String fx:value="accent" />
                         <String fx:value="large" />
