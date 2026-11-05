@@ -14,7 +14,7 @@
     <children>
         <VBox spacing="2.0">
             <children>
-                <Label text="Gestão de Adoção">
+                <Label text="Painel">
                     <styleClass>
                         <String fx:value="title-4" />
                         <String fx:value="text-bold" />
@@ -40,16 +40,17 @@
                         <String fx:value="flat" />
                     </styleClass>
                 </Button>
-                <Button fx:id="btnBaias" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Baias &amp; Alocação">
+                <Button fx:id="btnBaias" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Baias">
                     <styleClass>
                         <String fx:value="flat" />
                     </styleClass>
                 </Button>
-                <Button fx:id="btnEspecieRaca" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Espécies &amp; Raças">
+                <Button fx:id="btnEspecieRaca" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Espécies">
                     <styleClass>
                         <String fx:value="flat" />
                     </styleClass>
                 </Button>
+            <Button fx:id="btnUsuarios" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="flat" text="Usuarios" />
                 <Separator prefWidth="200.0">
                     <VBox.margin>
                         <Insets bottom="6.0" top="6.0" />
