@@ -25,11 +25,6 @@
                                       <String fx:value="title-2" />
                                   </styleClass>
                               </Label>
-                              <Label text="Introduza as suas credenciais para prosseguir">
-                                  <styleClass>
-                                      <String fx:value="text-muted" />
-                                  </styleClass>
-                              </Label>
                           </children>
                       </VBox>
                       <VBox spacing="14.0">
