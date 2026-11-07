@@ -25,12 +25,12 @@
         <Separator prefWidth="200.0" />
         <VBox spacing="6.0" VBox.vgrow="ALWAYS">
             <children>
-                <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Dashboard">
+                <Button fx:id="btnDashboard" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarParaDashboardView" text="Dashboard">
                     <styleClass>
                         <String fx:value="flat" />
                     </styleClass>
                 </Button>
-                <Button fx:id="btnAnimais" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Animais">
+                <Button fx:id="btnAnimais" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarParaAnimalView" text="Animais">
                     <styleClass>
                         <String fx:value="flat" />
                     </styleClass>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="16.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.AnimalController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      <Label text="Gestao de Animais">
+         <styleClass>
+            <String fx:value="title-2" />
+            <String fx:value="text-bold" />
+         </styleClass>
+      </Label>
+      <HBox prefWidth="200.0" spacing="10.0">
+         <children>
+            <TextField promptText="Buscar por nome..." HBox.hgrow="ALWAYS" />
+            <ComboBox prefWidth="160.0" promptText="Filtrar por Status" />
+            <Button mnemonicParsing="false" styleClass="button-outlined" text="Filtrar" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0" VBox.vgrow="ALWAYS">
+         <children>
+            <TableView prefHeight="200.0" prefWidth="550.0" styleClass="striped" HBox.hgrow="ALWAYS">
+              <columns>
+                <TableColumn prefWidth="50.0" text="ID" />
+                  <TableColumn prefWidth="140.0" text="Nome" />
+                  <TableColumn prefWidth="90.0" text="Porte" />
+                  <TableColumn text="Sexo" />
+                  <TableColumn prefWidth="110.0" text="Raça" />
+                  <TableColumn prefWidth="100.0" text="Status" />
+              </columns>
+            </TableView>
+            <VBox alignment="TOP_CENTER" prefWidth="250.0" spacing="12.0">
+               <children>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="accent" text="Cadastrar Animal" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button-outlined" text="Editar Animal" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="danger" text="Excluir Animal" />
+               </children>
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

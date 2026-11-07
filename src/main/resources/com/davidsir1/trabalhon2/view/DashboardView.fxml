@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="20.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="20.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Visao Geral">
          <styleClass>
@@ -50,7 +50,7 @@
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
          <children>
             <Label styleClass="title-4" text="Adoções Recentes" />
-            <TableView VBox.vgrow="ALWAYS">
+            <TableView styleClass="striped" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn prefWidth="60.0" text="ID" />
                 <TableColumn prefWidth="200.0" text="Animal" />

@@ -25,10 +25,14 @@ public class SidebarController {
         this.mainController = mainController;
     }
 
-    private void trocarSubTela(String fxml) {
-        if (mainController != null) {
-            mainController.carregarTela(fxml);
-        }
+    @FXML
+    public void trocarParaDashboardView() {
+        trocarSubTela("DashboardView.fxml");
+    }
+
+    @FXML
+    public void trocarParaAnimalView() {
+        trocarSubTela("AnimalView.fxml");
     }
 
     @FXML
@@ -48,6 +52,12 @@ public class SidebarController {
             System.err.println("Erro ao retornar para a tela de login: " + e.getMessage());
         } catch (NullPointerException | IllegalStateException e) {
             System.err.println("Houve falha ao abrir a tela LoginView.fxml: " + e.getMessage());
+        }
+    }
+
+    private void trocarSubTela(String fxml) {
+        if (mainController != null) {
+            mainController.carregarTela(fxml);
         }
     }
 }
