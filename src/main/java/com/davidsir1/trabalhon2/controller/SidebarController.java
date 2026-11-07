@@ -40,6 +40,10 @@ public class SidebarController {
         trocarSubTela("AdotanteView.fxml");
     }
 
+    public void trocarParaBaiaView() {
+        trocarSubTela("BaiaView.fxml");
+    }
+
     @FXML
     private void realizarLogout () {
         try {
