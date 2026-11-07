@@ -45,7 +45,7 @@
                         <String fx:value="flat" />
                     </styleClass>
                 </Button>
-                <Button fx:id="btnEspecieRaca" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Espécies e Raças">
+                <Button fx:id="btnEspecieRaca" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarParaEspecieRacaView" text="Espécies e Raças">
                     <styleClass>
                         <String fx:value="flat" />
                     </styleClass>

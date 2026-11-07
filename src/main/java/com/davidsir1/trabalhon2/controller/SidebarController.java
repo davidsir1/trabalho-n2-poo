@@ -40,8 +40,14 @@ public class SidebarController {
         trocarSubTela("AdotanteView.fxml");
     }
 
+    @FXML
     public void trocarParaBaiaView() {
         trocarSubTela("BaiaView.fxml");
+    }
+
+    @FXML
+    public void trocarParaEspecieRacaView() {
+        trocarSubTela("EspecieRacaView.fxml");
     }
 
     @FXML
