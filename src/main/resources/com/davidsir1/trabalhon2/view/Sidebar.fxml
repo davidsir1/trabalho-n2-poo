@@ -35,7 +35,7 @@
                         <String fx:value="flat" />
                     </styleClass>
                 </Button>
-                <Button fx:id="btnAdotantes" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Adotantes">
+                <Button fx:id="btnAdotantes" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarParaAdotanteView" text="Adotantes">
                     <styleClass>
                         <String fx:value="flat" />
                     </styleClass>
