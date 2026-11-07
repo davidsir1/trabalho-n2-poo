@@ -30,7 +30,6 @@ public class LoginController {
 
         } catch (IOException e) {
             System.err.println("Erro ao carregar a MainView.fxml: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 }
