@@ -28,7 +28,9 @@ public class MainController {
     public void carregarTela(String nomeFxml) {
         try {
             Parent fxml = FXMLLoader.load(Objects.requireNonNull(HelloApplication.class.getResource("view/" + nomeFxml)));
+            String css = HelloApplication.class.getResource("css/style.css").toExternalForm();
             conteudoArea.getChildren().clear();
+            conteudoArea.getStylesheets().add(css);
             conteudoArea.getChildren().add(fxml);
         } catch (IOException e) {
             System.err.println("Falha ao abrir o arquivo " + nomeFxml + ": " + e.getMessage());

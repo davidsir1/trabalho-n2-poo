@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.davidsir1.trabalhon2.controller.DashboardController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="20.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Visao Geral">
+         <styleClass>
+            <String fx:value="title-2" />
+            <String fx:value="text-bold" />
+         </styleClass>
+      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="card" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Animais Disponíveis" />
+                  <Label styleClass="title-1" text="0" />
+               </children>
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="card" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Adoções Realizadas" />
+                  <Label styleClass="title-1" text="0" />
+               </children>
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="card" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Adotantes Cadastrados" />
+                  <Label styleClass="title-1" text="0" />
+               </children>
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label styleClass="title-4" text="Adoções Recentes" />
+            <TableView VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn prefWidth="60.0" text="ID" />
+                <TableColumn prefWidth="200.0" text="Animal" />
+                  <TableColumn prefWidth="250.0" text="Adotante" />
+                  <TableColumn prefWidth="200.0" text="Data da Adoçao" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+   </padding>
+</VBox>

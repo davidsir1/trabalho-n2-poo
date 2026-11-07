@@ -8,6 +8,6 @@
         <fx:include fx:id="sidebarComponent" source="Sidebar.fxml" />
     </left>
     <center>
-        <StackPane fx:id="conteudoArea" style="-fx-background-color: -color-bg-default;" BorderPane.alignment="CENTER" />
+        <StackPane fx:id="conteudoArea" style="-fx-background-color: -color-bg-default;" BorderPane.alignment="CENTER_LEFT" />
     </center>
 </BorderPane>
