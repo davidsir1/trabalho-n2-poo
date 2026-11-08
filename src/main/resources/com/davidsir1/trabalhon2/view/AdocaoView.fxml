@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="850.0" spacing="16.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.AdocaoController">
+   <children>
+      <VBox prefWidth="100.0" spacing="4.0">
+         <children>
+            <Label text="Registrar Nova Adoçao">
+               <styleClass>
+                  <String fx:value="title-2" />
+                  <String fx:value="text-bold" />
+               </styleClass>
+            </Label>
+            <Label text="Associe um adotante cadastrado a um animal disponivel para adoçao" />
+         </children>
+      </VBox>
+      <Separator prefWidth="200.0" />
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="450.0" spacing="16.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox prefWidth="100.0" spacing="6.0">
+                     <children>
+                        <Label styleClass="text-bold" text="Selecione o Adotante" />
+                        <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Pesquise o adotante por nome..." />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="100.0" spacing="6.0">
+                     <children>
+                        <Label styleClass="text-bold" text="Selecione o Animal" />
+                        <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Selecione o animal disponivel" />
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="100.0" spacing="6.0">
+                     <children>
+                        <Label styleClass="text-bold" text="Data de Adoçao" />
+                        <DatePicker maxWidth="1.7976931348623157E308" />
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" text="Registrar Adoçao">
+                     <styleClass>
+                        <String fx:value="accent" />
+                        <String fx:value="large" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="350.0" spacing="12.0" styleClass="card" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <Label text="Resumo Adoçao">
+                     <styleClass>
+                        <String fx:value="text-bold" />
+                        <String fx:value="title-4" />
+                     </styleClass>
+                  </Label>
+                  <Separator prefWidth="200.0" />
+                  <Label styleClass="text-muted" text="Adotante Selecionado:" />
+                  <Label styleClass="text-bold" text="Nenhum Selecionado" />
+                  <Label styleClass="text-muted" text="Animal Selecionado:" />
+                  <Label styleClass="text-bold" text="Nenhum Selecionado" />
+                  <Label styleClass="text-muted" text="Responsavel pelo Registro:" />
+                  <Label styleClass="text-bold" text="Usuario Logado" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+   </padding>
+</VBox>

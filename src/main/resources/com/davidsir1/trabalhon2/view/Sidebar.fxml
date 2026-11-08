@@ -56,7 +56,7 @@
                         <Insets bottom="6.0" top="6.0" />
                     </VBox.margin>
                 </Separator>
-                <Button fx:id="btnAdocao" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Registrar Adoção">
+                <Button fx:id="btnAdocao" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#trocarParaAdocaoView" text="Registrar Adoção">
                     <styleClass>
                         <String fx:value="accent" />
                     </styleClass>
