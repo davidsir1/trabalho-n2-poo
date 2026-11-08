@@ -24,7 +24,7 @@ public class LoginController {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("Sistema de Adoção - Painel Principal");
+            stage.setTitle("Sistema de Adoção");
             stage.centerOnScreen();
             stage.show();
 

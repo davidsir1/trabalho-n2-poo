@@ -65,7 +65,7 @@ public class SidebarController {
             Scene scene = new Scene(root);
 
             stage.setScene(scene);
-            stage.setTitle("Hello!");
+            stage.setTitle("Sistema de Adoção");
             stage.centerOnScreen();
             stage.show();
         } catch (IOException e) {
