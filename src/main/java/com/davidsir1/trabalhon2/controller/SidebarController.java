@@ -56,6 +56,11 @@ public class SidebarController {
     }
 
     @FXML
+    public void trocarParaUsuarioView() {
+        trocarSubTela("UsuarioView.fxml");
+    }
+
+    @FXML
     private void realizarLogout () {
         try {
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("view/LoginView.fxml"));
