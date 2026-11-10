@@ -1,4 +1,4 @@
-package com.davidsir1.trabalhon2.controller;
+package com.davidsir1.trabalhon2.controller.view;
 
 import com.davidsir1.trabalhon2.HelloApplication;
 import javafx.fxml.FXML;

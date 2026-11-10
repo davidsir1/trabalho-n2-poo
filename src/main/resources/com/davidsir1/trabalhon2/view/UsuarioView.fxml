@@ -25,7 +25,7 @@
          <children>
             <HBox prefWidth="200.0" spacing="12.0">
                <children>
-                  <TextField promptText="Buscar usuario por nome..." HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="inBuscarUsuario" promptText="Buscar usuario por nome..." HBox.hgrow="ALWAYS" />
                   <Button mnemonicParsing="false" styleClass="button-outlined" text="Buscar" />
                </children>
             </HBox>
