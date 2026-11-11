@@ -67,7 +67,7 @@ public class SidebarController {
             Parent root = loader.load();
 
             Stage stage = (Stage) btnSair.getScene().getWindow();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 1280, 720);
 
             stage.setScene(scene);
             stage.setTitle("Sistema de Adoção");

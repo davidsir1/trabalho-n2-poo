@@ -22,7 +22,7 @@ public class LoginController {
 
             Stage stage = (Stage) btnEntrar.getScene().getWindow();
 
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root, 1280, 720);
             stage.setScene(scene);
             stage.setTitle("Sistema de Adoção");
             stage.centerOnScreen();
