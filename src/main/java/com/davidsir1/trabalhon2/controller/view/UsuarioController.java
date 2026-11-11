@@ -1,6 +1,8 @@
 package com.davidsir1.trabalhon2.controller.view;
 
 import com.davidsir1.trabalhon2.HelloApplication;
+import com.davidsir1.trabalhon2.controller.form.UsuarioFormController;
+import com.davidsir1.trabalhon2.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,19 +20,7 @@ public class UsuarioController {
     @FXML
     public void adicionarUsuario() {
         // Chamar o formulário de adicionar o usuário
-        try {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("forms/UsuarioFormView.fxml"));
-
-            // Carregar os dados do usuario no formulario
-
-            Stage stage = new Stage();
-            stage.setTitle("Adicionar Usuário");
-            stage.setScene(new Scene(loader.load()));
-            stage.show();
-
-        } catch (IOException e) {
-            System.err.println("Erro ao carregar o formulário: " + e.getMessage());
-        }
+        abrirFormulario(null, "Adicionar Usuário");
     }
 
     @FXML
@@ -42,5 +32,22 @@ public class UsuarioController {
     @FXML
     public void buscarUsuario() {
         // Consultar o nome do usuario no banco e atualizar a tabela
+    }
+
+    private void abrirFormulario(Usuario usuario, String titulo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("forms/UsuarioFormView.fxml"));
+
+            Stage stage = new Stage();
+            stage.setTitle(titulo);
+            stage.setScene(new Scene(loader.load()));
+
+            UsuarioFormController formController = loader.getController();
+            formController.setUsuarioEdicao(usuario);
+
+            stage.showAndWait();
+        } catch (IOException e) {
+            System.err.println("Erro ao carregar o formulário: " + e.getMessage());
+        }
     }
 }

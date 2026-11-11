@@ -3,6 +3,7 @@ package com.davidsir1.trabalhon2.controller.form;
 import com.davidsir1.trabalhon2.model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -16,6 +17,8 @@ public class UsuarioFormController {
     private ChoiceBox<String> cargoUsuario;
     @FXML
     private TextField inSenhaUsuario;
+    @FXML
+    private Button btnConfirmar;
 
     private Usuario usuarioEdicao;
 
@@ -37,6 +40,8 @@ public class UsuarioFormController {
             }
 
             inSenhaUsuario.clear();
+
+            btnConfirmar.setText("Salvar");
         }
     }
 
