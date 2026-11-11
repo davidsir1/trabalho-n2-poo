@@ -10,4 +10,6 @@ module com.davidsir1.trabalhon2 {
     opens com.davidsir1.trabalhon2.config to javafx.fxml;
     exports com.davidsir1.trabalhon2.controller.view;
     opens com.davidsir1.trabalhon2.controller.view to javafx.fxml;
+    exports com.davidsir1.trabalhon2.controller.form;
+    opens com.davidsir1.trabalhon2.controller.form to javafx.fxml;
 }

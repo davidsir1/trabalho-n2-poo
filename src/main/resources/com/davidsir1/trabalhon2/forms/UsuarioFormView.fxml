@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="12.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.form.UsuarioFormController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      <VBox prefWidth="100.0" spacing="6.0">
+         <children>
+            <Label styleClass="text-bold" text="Nome" />
+            <TextField fx:id="inNomeUsuario" />
+         </children>
+      </VBox>
+      <VBox prefWidth="100.0" spacing="6.0">
+         <children>
+            <Label styleClass="text-bold" text="E-mail" />
+            <TextField fx:id="inEmailUsuario" />
+         </children>
+      </VBox>
+      <VBox layoutX="30.0" layoutY="88.0" prefWidth="100.0" spacing="6.0">
+         <children>
+            <Label styleClass="text-bold" text="Cargo" />
+            <ChoiceBox fx:id="cargoUsuario" prefWidth="150.0" />
+         </children>
+      </VBox>
+      <VBox layoutX="30.0" layoutY="88.0" prefWidth="100.0" spacing="6.0">
+         <children>
+            <Label styleClass="text-bold" text="Senha" />
+            <TextField fx:id="inSenhaUsuario" />
+         </children>
+      </VBox>
+      <HBox alignment="BOTTOM_RIGHT" prefWidth="200.0" spacing="12.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Button mnemonicParsing="false" onAction="#cancelar" styleClass="button-outlined" text="Cancelar" />
+            <Button mnemonicParsing="false" onAction="#confirmar" styleClass="accent" text="Confirmar" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
