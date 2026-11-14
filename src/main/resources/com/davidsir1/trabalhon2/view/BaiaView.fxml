@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="16.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -21,10 +20,20 @@
             <String fx:value="text-bold" />
          </styleClass>
       </Label>
-      <HBox prefWidth="200.0" spacing="10.0">
+      <HBox maxHeight="1.7976931348623157E308" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" styleClass="accent" text="Cadastrar Nova Baia" />
-            <Button mnemonicParsing="false" styleClass="accent" text="Alocar Animal de Baia" />
+            <VBox maxWidth="1.7976931348623157E308" spacing="12.0">
+               <children>
+                  <Button fx:id="btnAdicionarBaia" mnemonicParsing="false" prefWidth="170.0" styleClass="accent" text="Adicionar Nova Baia" />
+                  <Button fx:id="btnEditarBaia" mnemonicParsing="false" prefWidth="170.0" styleClass="button-outlined" text="Editar Baia" />
+                  <Button fx:id="btnExcluirBaia" mnemonicParsing="false" prefWidth="170.0" styleClass="danger" text="Excluir Baia" />
+               </children>
+            </VBox>
+            <VBox maxWidth="1.7976931348623157E308" spacing="12.0">
+               <children>
+                  <Button fx:id="btnAlocarAnimal" mnemonicParsing="false" prefWidth="170.0" styleClass="accent" text="Alocar Animal de Baia" />
+               </children>
+            </VBox>
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0" VBox.vgrow="ALWAYS">
@@ -32,7 +41,7 @@
             <VBox prefWidth="100.0" spacing="16.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label styleClass="text-bold" text="Baias Existentes" />
-                  <TableView prefHeight="200.0" prefWidth="200.0" styleClass="striped" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="tabelaBaias" prefHeight="200.0" prefWidth="200.0" styleClass="striped" VBox.vgrow="ALWAYS">
                     <columns>
                       <TableColumn text="ID Baia" />
                       <TableColumn prefWidth="120.0" text="Capacidade" />
@@ -43,7 +52,7 @@
             <VBox prefWidth="100.0" spacing="16.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label styleClass="text-bold" text="Historico de Alocaçoes" />
-                  <TableView prefHeight="200.0" prefWidth="200.0" styleClass="striped" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="tabelaHistoricoAlocacao" prefHeight="200.0" prefWidth="200.0" styleClass="striped" VBox.vgrow="ALWAYS">
                      <columns>
                         <TableColumn prefWidth="60.0" text="ID" />
                         <TableColumn prefWidth="120.0" text="Animal" />
