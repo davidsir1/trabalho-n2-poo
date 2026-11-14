@@ -58,6 +58,10 @@ public class Usuario {
         return senha;
     }
 
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public Cargo getCargo() {
         return cargo;
     }

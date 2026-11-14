@@ -33,11 +33,11 @@
                <children>
                   <TableView fx:id="tabelaUsuarios" prefHeight="200.0" prefWidth="200.0" styleClass="striped" HBox.hgrow="ALWAYS">
                     <columns>
-                      <TableColumn prefWidth="50.0" text="ID" />
-                      <TableColumn prefWidth="200.0" text="Nome" />
-                        <TableColumn prefWidth="200.0" text="E-mail" />
-                        <TableColumn prefWidth="100.0" text="Cargo" />
-                        <TableColumn prefWidth="150.0" text="Permissao" />
+                      <TableColumn fx:id="idColuna" prefWidth="50.0" text="ID" />
+                      <TableColumn fx:id="nomeColuna" prefWidth="200.0" text="Nome" />
+                        <TableColumn fx:id="emailColuna" prefWidth="200.0" text="E-mail" />
+                        <TableColumn fx:id="cargoColuna" prefWidth="100.0" text="Cargo" />
+                        <TableColumn fx:id="senhaColuna" prefWidth="100.0" text="Senha" visible="false" />
                     </columns>
                   </TableView>
                   <VBox alignment="TOP_CENTER" prefWidth="250.0" spacing="12.0">

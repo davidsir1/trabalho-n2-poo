@@ -61,7 +61,7 @@ public class UsuarioRepository {
     }
 
     public List<Usuario> listarTodos() {
-        return buscarPorNome("");
+        return buscarPorNome(null);
     }
 
     public List<Usuario> buscarPorNome(String nome) {
@@ -74,21 +74,22 @@ public class UsuarioRepository {
         List<Usuario> usuarios = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, "%" + (nome == null ? "" : nome.trim()) + "%");
 
-            while (rs.next()) {
-                Cargo cargo = new Cargo(rs.getInt("id_cargo"), rs.getString("cargo"));
-                Usuario usuario = new Usuario(
-                        rs.getInt("id_usuario"),
-                        rs.getString("nome_usuario"),
-                        rs.getString("email_usuario"),
-                        rs.getString("senha"),
-                        cargo
-                );
-                usuarios.add(usuario);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Cargo cargo = new Cargo(rs.getInt("id_cargo"), rs.getString("cargo"));
+                    Usuario usuario = new Usuario(
+                            rs.getInt("id_usuario"),
+                            rs.getString("nome_usuario"),
+                            rs.getString("email_usuario"),
+                            rs.getString("senha"),
+                            cargo
+                    );
+                    usuarios.add(usuario);
+                }
             }
         } catch (SQLException e) {
             System.err.println("Erro ao consultar usuários no banco de dados: " + e.getMessage());

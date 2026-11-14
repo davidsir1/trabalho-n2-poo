@@ -3,19 +3,42 @@ package com.davidsir1.trabalhon2.controller.view;
 import com.davidsir1.trabalhon2.HelloApplication;
 import com.davidsir1.trabalhon2.controller.form.UsuarioFormController;
 import com.davidsir1.trabalhon2.model.Usuario;
+import com.davidsir1.trabalhon2.service.UsuarioService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class UsuarioController {
     @FXML private TextField inBuscarUsuario;
-    @FXML private TableView tabelaUsuarios;
+    @FXML private TableView<Usuario> tabelaUsuarios;
+
+    @FXML private TableColumn<Usuario, Integer> idColuna;
+    @FXML private TableColumn<Usuario, String> nomeColuna;
+    @FXML private TableColumn<Usuario, String> emailColuna;
+    @FXML private TableColumn<Usuario, String> cargoColuna;
+    @FXML private TableColumn<Usuario, String> senhaColuna;
+
+    private final UsuarioService usuarioService = new UsuarioService();
+
+    public void initialize() {
+        idColuna.setCellValueFactory(new PropertyValueFactory<Usuario, Integer>("id_usuario"));
+        nomeColuna.setCellValueFactory(new PropertyValueFactory<Usuario, String>("nome_usuario"));
+        emailColuna.setCellValueFactory(new PropertyValueFactory<Usuario, String>("email_usuario"));
+        cargoColuna.setCellValueFactory(new PropertyValueFactory<Usuario, String>("cargo"));
+        senhaColuna.setCellValueFactory(new PropertyValueFactory<Usuario, String>("senha"));
+
+        carregarUsuarios();
+    }
 
     @FXML
     public void adicionarUsuario() {
@@ -27,6 +50,14 @@ public class UsuarioController {
     public void editarUsuario() {
         // Chamar o mesmo formulário de adicionar o usuário
         // o formulário terá um botão com o nome "Salvar Alteração"
+        Usuario usuario = tabelaUsuarios.getSelectionModel().getSelectedItem();
+
+        if (usuario == null) {
+            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione um usuário na tabela para editar.");
+            return;
+        }
+
+        abrirFormulario(usuario, "Editar Usuário");
     }
 
     @FXML
@@ -49,5 +80,17 @@ public class UsuarioController {
         } catch (IOException e) {
             System.err.println("Erro ao carregar o formulário: " + e.getMessage());
         }
+    }
+
+    private void carregarUsuarios() {
+        tabelaUsuarios.setItems(FXCollections.observableArrayList(usuarioService.listarTodos()));
+    }
+
+    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
 }

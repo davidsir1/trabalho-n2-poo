@@ -1,8 +1,11 @@
 package com.davidsir1.trabalhon2.controller.form;
 
+import com.davidsir1.trabalhon2.model.Cargo;
 import com.davidsir1.trabalhon2.model.Usuario;
+import com.davidsir1.trabalhon2.service.UsuarioService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -14,18 +17,17 @@ public class UsuarioFormController {
     @FXML
     private TextField inEmailUsuario;
     @FXML
-    private ChoiceBox<String> cargoUsuario;
+    private ChoiceBox<Cargo> cargoUsuario;
     @FXML
     private TextField inSenhaUsuario;
     @FXML
     private Button btnConfirmar;
 
+    private final UsuarioService usuarioService = new UsuarioService();
     private Usuario usuarioEdicao;
 
     public void initialize() {
-        cargoUsuario.setItems(FXCollections.observableArrayList(
-                "Admin", "Funcionário"
-        ));
+        cargoUsuario.setItems(FXCollections.observableArrayList(usuarioService.listarCargos()));
     }
 
     public void setUsuarioEdicao(Usuario usuarioEdicao) {
@@ -48,6 +50,18 @@ public class UsuarioFormController {
     @FXML
     public void confirmar() {
         // Implementar funcionalidade de salvar alterações ou salvar novo usuário
+        String nome = inNomeUsuario.getText();
+        String email = inEmailUsuario.getText();
+        Cargo cargo = cargoUsuario.getValue();
+        String senha = inSenhaUsuario.getText();
+
+        if (usuarioEdicao == null) {
+            usuarioService.cadastrar(nome, email, cargo, senha);
+        } else {
+            usuarioService.atualizar(usuarioEdicao, nome, email, cargo, senha);
+        }
+
+        //cancelar();
     }
 
     @FXML
@@ -56,4 +70,11 @@ public class UsuarioFormController {
         stage.close();
     }
 
+    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
 }

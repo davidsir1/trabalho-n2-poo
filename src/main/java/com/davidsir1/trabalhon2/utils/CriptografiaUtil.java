@@ -1,52 +1,37 @@
 package com.davidsir1.trabalhon2.utils;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
+import org.mindrot.jbcrypt.BCrypt;
 
 public final class CriptografiaUtil {
-    private static final String CHAVE_SECRETA = System.getenv("CHAVE_SECRETA");
-    private static final String ALGORITMO = System.getenv("ALGORITMO_CRIPT");
+    private static final int FATOR = 12;
 
     private CriptografiaUtil(){}
 
-    public static String criptografar(String texto) {
+    public static String criptografar(String senha) {
+        if (senha == null || senha.isBlank()) {
+            // Retornar uma exceção dizendo que a senha não pode ser vazia
+            System.err.println("A senha não pode ser nula ou vazia.");
+            return null;
+        }
+
         try {
-            SecretKeySpec encripta = new SecretKeySpec(CHAVE_SECRETA.getBytes(StandardCharsets.UTF_8), ALGORITMO);
-            Cipher cipher = Cipher.getInstance(ALGORITMO);
-            cipher.init(Cipher.ENCRYPT_MODE, encripta);
-            byte[] criptografado = cipher.doFinal(texto.getBytes(StandardCharsets.UTF_8));
-            return Base64.getEncoder().encodeToString(criptografado);
-        } catch (NoSuchAlgorithmException
-                 | NoSuchPaddingException
-                 | IllegalBlockSizeException
-                 | BadPaddingException
-                 | InvalidKeyException e) {
-            System.err.println("Erro ao criptografar texto: " + e.getMessage());
-            return e.getMessage();
+            return BCrypt.hashpw(senha, BCrypt.gensalt(FATOR));
+        } catch (IllegalArgumentException e) {
+            System.err.println("Erro ao gerar o hash da senha: " + e.getMessage());
+            return null;
         }
     }
 
-    public static String descriptografar(String textoCriptografado) {
+    public static boolean verificarSenha(String senha, String hash) {
+        if (senha == null || hash == null || senha.isBlank() || hash.isBlank()) {
+            return false;
+        }
+
         try {
-            SecretKeySpec decripta = new SecretKeySpec(CHAVE_SECRETA.getBytes(StandardCharsets.UTF_8), ALGORITMO);
-            Cipher cipher = Cipher.getInstance(ALGORITMO);
-            cipher.init(Cipher.DECRYPT_MODE, decripta);
-            byte[] descriptografado = cipher.doFinal(textoCriptografado.getBytes(StandardCharsets.UTF_8));
-            return new String(cipher.doFinal(descriptografado), StandardCharsets.UTF_8);
-        } catch (NoSuchAlgorithmException
-                 | NoSuchPaddingException
-                 | IllegalBlockSizeException
-                 | BadPaddingException
-                 | InvalidKeyException e) {
-            System.err.println("Erro ao descriptografar texto: " + e.getMessage());
-            return e.getMessage();
+            return BCrypt.checkpw(senha, hash);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Hash de senha armazenado em formato inválido: " + e.getMessage());
+            return false;
         }
     }
 }

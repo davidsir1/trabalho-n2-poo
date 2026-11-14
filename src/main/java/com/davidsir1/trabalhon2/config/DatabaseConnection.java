@@ -9,7 +9,7 @@ public class DatabaseConnection {
     private static final String USER = System.getenv("USER");
     private static final String PASS = System.getenv("PASS");
 
-    private static Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASS);
     }
 }
