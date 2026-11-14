@@ -12,6 +12,9 @@ O sistema possui funcionalidades de gestão de animais e baias e registro de ado
 - JDBC
 - JavaFX 21
 - Java 25
+- [AtlantaFX](https://github.com/mkpaz/atlantafx)
+- [Scene Builder](https://gluonhq.com/products/scene-builder/)
+- [jBCrypt](https://github.com/jeremyh/jBCrypt)
 
 # Integrantes
 
@@ -20,3 +23,9 @@ O sistema possui funcionalidades de gestão de animais e baias e registro de ado
 - Filipe Sebastião
 - Pedro Luis
 - Breno Freire
+
+# Referência
+
+- [Utilizando criptografia simetrica em Java](https://www.devmedia.com.br/utilizando-criptografia-simetrica-em-java/31170)
+- [JavaFX Tutorial](https://www.tutorialspoint.com/javafx/index.htm)
+- [JavaFX Playlist](https://www.youtube.com/@JavaCodeJunkie/playlists)

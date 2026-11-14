@@ -3,11 +3,16 @@ module com.davidsir1.trabalhon2 {
     requires javafx.fxml;
     requires atlantafx.base;
     requires java.sql;
+    requires jbcrypt;
 
     opens com.davidsir1.trabalhon2 to javafx.fxml;
     exports com.davidsir1.trabalhon2;
-    opens com.davidsir1.trabalhon2.controller to javafx.fxml;
-    exports com.davidsir1.trabalhon2.controller;
     exports com.davidsir1.trabalhon2.config;
     opens com.davidsir1.trabalhon2.config to javafx.fxml;
+    exports com.davidsir1.trabalhon2.controller.view;
+    opens com.davidsir1.trabalhon2.controller.view to javafx.fxml;
+    exports com.davidsir1.trabalhon2.controller.form;
+    opens com.davidsir1.trabalhon2.controller.form to javafx.fxml;
+    exports com.davidsir1.trabalhon2.model;
+    opens com.davidsir1.trabalhon2.model to javafx.fxml;
 }
