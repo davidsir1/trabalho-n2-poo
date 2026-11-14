@@ -5,9 +5,9 @@ public class Usuario {
     private String nome_usuario;
     private String email_usuario;
     private String senha;
-    private String cargo;
+    private Cargo cargo;
 
-    public Usuario(int id_usuario, String nome_usuario, String email_usuario, String senha, String cargo) {
+    public Usuario(int id_usuario, String nome_usuario, String email_usuario, String senha, Cargo cargo) {
         this.id_usuario = id_usuario;
         this.nome_usuario = nome_usuario;
         this.email_usuario = email_usuario;
@@ -15,14 +15,14 @@ public class Usuario {
         this.cargo = cargo;
     }
 
-    public Usuario(String nome_usuario, String email_usuario, String senha, String cargo) {
+    public Usuario(String nome_usuario, String email_usuario, String senha, Cargo cargo) {
         this.nome_usuario = nome_usuario;
         this.email_usuario = email_usuario;
         this.senha = senha;
         this.cargo = cargo;
     }
 
-    public Usuario(String nome_usuario, String email_usuario, String cargo) {
+    public Usuario(String nome_usuario, String email_usuario, Cargo cargo) {
         this.nome_usuario = nome_usuario;
         this.email_usuario = email_usuario;
         this.cargo = cargo;
@@ -58,11 +58,22 @@ public class Usuario {
         return senha;
     }
 
-    public String getCargo() {
+    public Cargo getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(Cargo cargo) {
         this.cargo = cargo;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id_usuario=" + id_usuario +
+                ", nome_usuario='" + nome_usuario + '\'' +
+                ", email_usuario='" + email_usuario + '\'' +
+                ", senha='" + senha + '\'' +
+                ", cargo='" + cargo + '\'' +
+                '}';
     }
 }
