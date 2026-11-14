@@ -61,6 +61,7 @@ DROP TABLE IF EXISTS baia;
 
 CREATE TABLE baia (
        id_baia INT AUTO_INCREMENT PRIMARY KEY,
+       cod_baia VARCHAR(30) NOT NULL,
        capacidade INT NOT NULL
 );
 
