@@ -5,7 +5,13 @@ O sistema possui funcionalidades de gestão de animais e baias e registro de ado
 
 # Configuração
 
-...
+Arquivo de configuração de ambiente:
+
+```dotenv
+URL=jdbc:mysql://ip:porta/banco_de_dados
+USER=
+PASS=
+```
 
 # Tecnologias Utilizadas
 
