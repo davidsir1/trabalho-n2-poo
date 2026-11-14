@@ -22,3 +22,7 @@ O sistema possui funcionalidades de gestão de animais e baias e registro de ado
 - Filipe Sebastião
 - Pedro Luis
 - Breno Freire
+
+# Referência
+
+- [Utilizando criptografia simetrica em Java](https://www.devmedia.com.br/utilizando-criptografia-simetrica-em-java/31170)
