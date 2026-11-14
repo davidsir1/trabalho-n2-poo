@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class AlocacaoAnimal {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     private int id_alocacao_animal;
     private LocalDateTime data_transferencia;
@@ -68,7 +68,7 @@ public class AlocacaoAnimal {
     }
 
     public String getDataTransferenciaFormatada() {
-        return data_transferencia.format(FORMATTER);
+        return data_transferencia.format(FORMATO);
     }
 
     @Override
