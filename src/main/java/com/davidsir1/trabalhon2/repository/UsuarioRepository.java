@@ -115,4 +115,21 @@ public class UsuarioRepository {
 
         return cargos;
     }
+
+    public boolean existeEmailEmOutroUsuario(String email, int idUsuario) {
+        String sql = "SELECT 1 FROM usuario WHERE email_usuario = ? AND id_usuario <> ?;";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, email);
+            stmt.setInt(2, idUsuario);
+
+            try (ResultSet rs = stmt.executeQuery()){
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao verificar e-mail duplicado no banco de dados: " + e.getMessage());
+            return false;
+        }
+    }
 }

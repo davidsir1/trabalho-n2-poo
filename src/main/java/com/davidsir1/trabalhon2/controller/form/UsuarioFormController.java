@@ -1,5 +1,6 @@
 package com.davidsir1.trabalhon2.controller.form;
 
+import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
 import com.davidsir1.trabalhon2.model.Cargo;
 import com.davidsir1.trabalhon2.model.Usuario;
 import com.davidsir1.trabalhon2.service.UsuarioService;
@@ -56,12 +57,22 @@ public class UsuarioFormController {
         String senha = inSenhaUsuario.getText();
 
         if (usuarioEdicao == null) {
-            usuarioService.cadastrar(nome, email, cargo, senha);
+            try {
+                usuarioService.cadastrar(nome, email, cargo, senha);
+                exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Usuário cadastrado com sucesso.");
+                cancelar();
+            } catch (DadosInvalidosException e) {
+                exibirAlerta(Alert.AlertType.ERROR, "Error", e.getMessage());
+            }
         } else {
-            usuarioService.atualizar(usuarioEdicao, nome, email, cargo, senha);
+            try {
+                usuarioService.atualizar(usuarioEdicao, nome, email, cargo, senha);
+                exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Usuário atualizado com sucesso.");
+                cancelar();
+            } catch (DadosInvalidosException e) {
+                exibirAlerta(Alert.AlertType.ERROR, "Error", e.getMessage());
+            }
         }
-
-        //cancelar();
     }
 
     @FXML

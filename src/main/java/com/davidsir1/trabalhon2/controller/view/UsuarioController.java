@@ -2,6 +2,7 @@ package com.davidsir1.trabalhon2.controller.view;
 
 import com.davidsir1.trabalhon2.HelloApplication;
 import com.davidsir1.trabalhon2.controller.form.UsuarioFormController;
+import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
 import com.davidsir1.trabalhon2.model.Usuario;
 import com.davidsir1.trabalhon2.service.UsuarioService;
 import javafx.collections.FXCollections;
@@ -74,8 +75,12 @@ public class UsuarioController {
 
         Optional<ButtonType> resultado = confirmacao.showAndWait();
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
-            usuarioService.excluir(usuario);
-            exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Usuário excluído com sucesso.");
+            try {
+                usuarioService.excluir(usuario);
+                exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Usuário excluído com sucesso.");
+            } catch (DadosInvalidosException e) {
+                exibirAlerta(Alert.AlertType.ERROR, "Error", e.getMessage());
+            }
         }
     }
 
