@@ -59,17 +59,16 @@ public class AlocacaoAnimal {
         this.baia = baia;
     }
 
-    // Auxiliares para PropertyValueFactory na TableView
     public String getNomeAnimal() {
-        return animal != null ? animal.getNome_animal() : "";
+        return animal.getNome_animal();
     }
 
     public String getDescricaoBaia() {
-        return baia != null ? "Baia #" + baia.getId_baia() : "";
+        return "Baia #" + baia.getId_baia();
     }
 
     public String getDataTransferenciaFormatada() {
-        return data_transferencia != null ? data_transferencia.format(FORMATTER) : "";
+        return data_transferencia.format(FORMATTER);
     }
 
     @Override
