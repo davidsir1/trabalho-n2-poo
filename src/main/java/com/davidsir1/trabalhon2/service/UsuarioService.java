@@ -48,11 +48,24 @@ public class UsuarioService {
         usuarioRepository.atualizar(usuarioExistente);
     }
 
+    public void excluir(Usuario usuario) {
+        if (usuario == null) {
+            // Retornar uma exceção
+            return;
+        }
+
+        usuarioRepository.excluir(usuario.getId_usuario());
+    }
+
     public List<Usuario> listarTodos() {
         return usuarioRepository.listarTodos();
     }
 
     public List<Cargo> listarCargos() {
         return usuarioRepository.listarCargos();
+    }
+
+    public List<Usuario> buscarPorNome(String nome) {
+        return usuarioRepository.buscarPorNome(nome);
     }
 }

@@ -9,14 +9,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class UsuarioController {
     @FXML private TextField inBuscarUsuario;
@@ -61,8 +59,31 @@ public class UsuarioController {
     }
 
     @FXML
+    public void excluirUsuario() {
+        Usuario usuario = tabelaUsuarios.getSelectionModel().getSelectedItem();
+
+        if (usuario == null) {
+            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione um usuário na tabela para excluir.");
+            return;
+        }
+
+        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacao.setTitle("Confirmar Exclusão");
+        confirmacao.setHeaderText("Excluir usuário: " + usuario.getNome_usuario());
+        confirmacao.setContentText("Tem certeza que deseja excluir este usuário? Esta ação não pode ser desfeita.");
+
+        Optional<ButtonType> resultado = confirmacao.showAndWait();
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
+            usuarioService.excluir(usuario);
+            exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Usuário excluído com sucesso.");
+        }
+    }
+
+    @FXML
     public void buscarUsuario() {
         // Consultar o nome do usuario no banco e atualizar a tabela
+        String nomeBusca = inBuscarUsuario.getText();
+        tabelaUsuarios.setItems(FXCollections.observableArrayList(usuarioService.buscarPorNome(nomeBusca)));
     }
 
     private void abrirFormulario(Usuario usuario, String titulo) {

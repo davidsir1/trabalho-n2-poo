@@ -26,7 +26,7 @@
             <HBox prefWidth="200.0" spacing="12.0">
                <children>
                   <TextField fx:id="inBuscarUsuario" promptText="Buscar usuario por nome..." HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" styleClass="button-outlined" text="Buscar" />
+                  <Button mnemonicParsing="false" onAction="#buscarUsuario" styleClass="button-outlined" text="Buscar" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
@@ -44,7 +44,7 @@
                      <children>
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#adicionarUsuario" styleClass="accent" text="Adicionar Usuario" />
                         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editarUsuario" styleClass="button-outlined" text="Editar Usuario" />
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="danger" text="Excluir Usuario" />
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#excluirUsuario" styleClass="danger" text="Excluir Usuario" />
                      </children>
                      <padding>
                         <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
