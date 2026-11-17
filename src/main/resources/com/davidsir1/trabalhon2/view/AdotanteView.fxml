@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="16.0" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="16.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.view.AdotanteController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -34,8 +34,8 @@
             </TableView>
             <VBox alignment="TOP_CENTER" prefWidth="250.0" spacing="12.0">
                <children>
-                  <Button fx:id="btnCadastrarAdotante" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="accent" text="Cadastrar Adotante" />
-                  <Button fx:id="btnEditarAdotante" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="button-outlined" text="Editar Adotante" />
+                  <Button fx:id="btnCadastrarAdotante" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cadastrarAdotante" styleClass="accent" text="Cadastrar Adotante" />
+                  <Button fx:id="btnEditarAdotante" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editarAdotante" styleClass="button-outlined" text="Editar Adotante" />
                   <Button fx:id="btnExcluirAdotante" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="danger" text="Excluir Adotante" />
                </children>
                <padding>
