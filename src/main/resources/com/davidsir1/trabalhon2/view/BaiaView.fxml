@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="16.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="16.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.view.BaiaController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -24,14 +24,14 @@
          <children>
             <VBox maxWidth="1.7976931348623157E308" spacing="12.0">
                <children>
-                  <Button fx:id="btnAdicionarBaia" mnemonicParsing="false" prefWidth="170.0" styleClass="accent" text="Adicionar Nova Baia" />
-                  <Button fx:id="btnEditarBaia" mnemonicParsing="false" prefWidth="170.0" styleClass="button-outlined" text="Editar Baia" />
+                  <Button fx:id="btnAdicionarBaia" mnemonicParsing="false" onAction="#adicionarBaia" prefWidth="170.0" styleClass="accent" text="Adicionar Nova Baia" />
+                  <Button fx:id="btnEditarBaia" mnemonicParsing="false" onAction="#editarBaia" prefWidth="170.0" styleClass="button-outlined" text="Editar Baia" />
                   <Button fx:id="btnExcluirBaia" mnemonicParsing="false" prefWidth="170.0" styleClass="danger" text="Excluir Baia" />
                </children>
             </VBox>
             <VBox maxWidth="1.7976931348623157E308" spacing="12.0">
                <children>
-                  <Button fx:id="btnAlocarAnimal" mnemonicParsing="false" prefWidth="170.0" styleClass="accent" text="Alocar Animal de Baia" />
+                  <Button fx:id="btnAlocarAnimal" mnemonicParsing="false" onAction="#alocarAnimal" prefWidth="170.0" styleClass="accent" text="Alocar Animal de Baia" />
                </children>
             </VBox>
          </children>

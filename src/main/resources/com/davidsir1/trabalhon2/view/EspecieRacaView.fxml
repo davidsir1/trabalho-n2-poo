@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="16.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="16.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.view.EspecieRacaController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -24,15 +24,15 @@
          <children>
             <VBox spacing="12.0">
                <children>
-                  <Button fx:id="btnAdicionarEspecie" mnemonicParsing="false" prefWidth="170.0" styleClass="accent" text="Adicionar Especie" />
-                  <Button fx:id="btnEditarEspecie" mnemonicParsing="false" prefWidth="170.0" styleClass="button-outlined" text="Editar Especie" />
+                  <Button fx:id="btnAdicionarEspecie" mnemonicParsing="false" onAction="#adicionarEspecie" prefWidth="170.0" styleClass="accent" text="Adicionar Especie" />
+                  <Button fx:id="btnEditarEspecie" mnemonicParsing="false" onAction="#editarEspecie" prefWidth="170.0" styleClass="button-outlined" text="Editar Especie" />
                   <Button fx:id="btnExcluirEspecie" mnemonicParsing="false" prefWidth="170.0" styleClass="danger" text="Excluir Especie" />
                </children>
             </VBox>
             <VBox spacing="12.0">
                <children>
-                  <Button fx:id="btnAdicionarRaca" mnemonicParsing="false" prefWidth="170.0" styleClass="accent" text="Adicionar Raça" />
-                  <Button fx:id="btnEditarRaca" mnemonicParsing="false" prefWidth="170.0" styleClass="button-outlined" text="Editar Raça" />
+                  <Button fx:id="btnAdicionarRaca" mnemonicParsing="false" onAction="#adicionarRaca" prefWidth="170.0" styleClass="accent" text="Adicionar Raça" />
+                  <Button fx:id="btnEditarRaca" mnemonicParsing="false" onAction="#editarRaca" prefWidth="170.0" styleClass="button-outlined" text="Editar Raça" />
                   <Button fx:id="btnExcluirRaca" mnemonicParsing="false" prefWidth="170.0" styleClass="danger" text="Excluir Raça" />
                </children>
             </VBox>

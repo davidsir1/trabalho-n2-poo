@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="560.0" spacing="12.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.form.AdotanteFormController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <VBox spacing="6.0">
+            <children>
+                <Label styleClass="text-bold" text="Nome Completo" />
+                <TextField fx:id="inNomeAdotante" promptText="Nome do adotante" />
+            </children>
+        </VBox>
+        <HBox spacing="12.0">
+            <children>
+                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label styleClass="text-bold" text="Telefone" />
+                        <TextField fx:id="inTelefone" promptText="(61) 99999-9999" />
+                    </children>
+                </VBox>
+                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label styleClass="text-bold" text="E-mail" />
+                        <TextField fx:id="inEmailAdotante" promptText="email@exemplo.com" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <VBox spacing="6.0">
+            <children>
+                <Label styleClass="text-bold" text="Endereço" />
+                <TextField fx:id="inEndereco" promptText="Quadra, rua, número, cidade..." />
+            </children>
+        </VBox>
+        <HBox alignment="BOTTOM_RIGHT" spacing="12.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Button mnemonicParsing="false" styleClass="button-outlined" text="Cancelar" />
+                <Button fx:id="btnConfirmar" mnemonicParsing="false" styleClass="accent" text="Confirmar" />
+            </children>
+        </HBox>
+    </children>
+</VBox>
