@@ -64,7 +64,7 @@ public class AlocacaoAnimal {
     }
 
     public String getDescricaoBaia() {
-        return "Baia #" + baia.getId_baia();
+        return "Baia " + baia.getCod_baia();
     }
 
     public String getDataTransferenciaFormatada() {

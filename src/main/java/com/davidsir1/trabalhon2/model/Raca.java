@@ -31,6 +31,10 @@ public class Raca {
         return especie;
     }
 
+    public String getNomeEspecie() {
+        return especie == null ? "" : especie.getEspecie();
+    }
+
     public void setRaca(String raca) {
         this.raca = raca;
     }
