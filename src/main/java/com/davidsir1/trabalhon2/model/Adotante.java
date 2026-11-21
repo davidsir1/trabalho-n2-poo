@@ -89,6 +89,6 @@ public class Adotante {
 
     @Override
     public String toString() {
-        return nome_adotante;
+        return nome_adotante + " - " + email_adotante + " - " + telefone;
     }
 }

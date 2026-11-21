@@ -75,6 +75,6 @@ public class Animal {
 
     @Override
     public String toString() {
-        return nome_animal + "(" + raca + ")";
+        return nome_animal + "(" + raca + " - " + raca.getNomeEspecie() + ")";
     }
 }

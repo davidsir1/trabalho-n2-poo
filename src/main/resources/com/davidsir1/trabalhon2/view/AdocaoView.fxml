@@ -31,13 +31,13 @@
                   <VBox prefWidth="100.0" spacing="6.0">
                      <children>
                         <Label styleClass="text-bold" text="Selecione o Adotante" />
-                        <ComboBox fx:id="selAdotante" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Pesquise o adotante por nome..." />
+                        <ComboBox fx:id="selAdotante" maxWidth="1.7976931348623157E308" onAction="#atualizarResumoAdotante" prefWidth="150.0" promptText="Pesquise o adotante por nome..." />
                      </children>
                   </VBox>
                   <VBox prefWidth="100.0" spacing="6.0">
                      <children>
                         <Label styleClass="text-bold" text="Selecione o Animal" />
-                        <ComboBox fx:id="selAnimalDisponivel" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Selecione o animal disponivel" />
+                        <ComboBox fx:id="selAnimalDisponivel" maxWidth="1.7976931348623157E308" onAction="#atualizarResumoAnimal" prefWidth="150.0" promptText="Selecione o animal disponivel" />
                      </children>
                   </VBox>
                   <VBox prefWidth="100.0" spacing="6.0">

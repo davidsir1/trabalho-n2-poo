@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 public class AdocaoController {
@@ -34,6 +35,8 @@ public class AdocaoController {
 
     @FXML
     public void registrarAdocao() {
+        // Verificar se os campos foram selecionados
+        // Exibir uma mensagem de confirmação da
         Adotante adotante = selAdotante.getValue();
         Animal animal = selAnimalDisponivel.getValue();
         LocalDate data = dataAdocao.getValue();
@@ -59,22 +62,58 @@ public class AdocaoController {
         } catch (DadosInvalidosException e) {
             exibirAlerta(Alert.AlertType.WARNING, "Dados Inválidos", e.getMessage());
         }
+    }
 
-        // Verificar se os campos foram selecionados
+    @FXML
+    public void atualizarResumoAdotante() {
+        try {
+            Adotante adotante = selAdotante.getValue() != null ? selAdotante.getValue() : null;
+            if (adotante != null) {
+                adotanteSelecionado.setText(adotante.getNome_adotante());
+            } else {
+                adotanteSelecionado.setText("Nenhum selecionado");
+            }
+        } catch (ClassCastException e) {
+            System.err.println(e.getMessage());
+            adotanteSelecionado.setText("Nenhum selecionado");
+        }
+    }
 
-        // Exibir uma mensagem de confirmação da adoção
-
+    @FXML
+    public void atualizarResumoAnimal() {
+        try {
+            Animal animal = selAnimalDisponivel.getValue() != null ? selAnimalDisponivel.getValue() : null;
+            if (animal != null) {
+                animalSelecionado.setText(animal.getNome_animal());
+            } else {
+                animalSelecionado.setText("Nenhum selecionado");
+            }
+        } catch (ClassCastException e) {
+            System.err.println(e.getMessage());
+            animalSelecionado.setText("Nenhum selecionado");
+        }
     }
 
     private void carregarListas() {
-        selAdotante.setItems(FXCollections.observableArrayList(adocaoService.listarAdotantes()));
-        selAnimalDisponivel.setItems(FXCollections.observableArrayList(adocaoService.listarAnimaisDisponiveis()));
+        List<Adotante> adotantes = adocaoService.listarAdotantes();
+        if (!adotantes.isEmpty())
+            selAdotante.setItems(FXCollections.observableArrayList(adotantes));
+        else
+            selAdotante.setDisable(true);
+
+        List<Animal> animaisDisponiveis = adocaoService.listarAnimaisDisponiveis();
+        if (!animaisDisponiveis.isEmpty())
+            selAnimalDisponivel.setItems(FXCollections.observableArrayList(animaisDisponiveis));
+        else
+            selAnimalDisponivel.setDisable(true);
     }
 
     private void limparFormulario() {
         selAdotante.setValue(null);
         selAnimalDisponivel.setValue(null);
         dataAdocao.setValue(LocalDate.now());
+        adotanteSelecionado.setText("Nenhum selecionado");
+        animalSelecionado.setText("Nenhum selecionado");
     }
 
     private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
