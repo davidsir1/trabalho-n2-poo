@@ -3,49 +3,114 @@ package com.davidsir1.trabalhon2.controller.view;
 import com.davidsir1.trabalhon2.HelloApplication;
 import com.davidsir1.trabalhon2.controller.form.AlocacaoFormController;
 import com.davidsir1.trabalhon2.controller.form.BaiaFormController;
+import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
+import com.davidsir1.trabalhon2.model.Animal;
 import com.davidsir1.trabalhon2.model.AlocacaoAnimal;
 import com.davidsir1.trabalhon2.model.Baia;
+import com.davidsir1.trabalhon2.service.BaiaService;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
 
 public class BaiaController {
-    @FXML private Button btnAdicionarBaia;
-    @FXML private Button btnEditarBaia;
-    @FXML private Button btnExcluirBaia;
-    @FXML private Button btnAlocarAnimal;
-
     @FXML private TableView<Baia> tabelaBaias;
-    @FXML private TableView<AlocacaoAnimal> tabelaHistoricoAlocao;
+    @FXML private TableColumn<Baia, Integer> idBaiaColuna;
+    @FXML private TableColumn<Baia, String> codigoBaiaColuna;
+    @FXML private TableColumn<Baia, Integer> capacidadeColuna;
+    @FXML private TableView<AlocacaoAnimal> tabelaHistoricoAlocacao;
+    @FXML private TableColumn<AlocacaoAnimal, Integer> idAlocacaoColuna;
+    @FXML private TableColumn<AlocacaoAnimal, String> animalColuna;
+    @FXML private TableColumn<AlocacaoAnimal, String> baiaColuna;
+    @FXML private TableColumn<AlocacaoAnimal, String> dataTransferenciaColuna;
 
+    private final BaiaService service = new BaiaService();
+
+    @FXML
     public void initialize() {
-        // Inicializar as tabelas
+        idBaiaColuna.setCellValueFactory(new PropertyValueFactory<>("id_baia"));
+        codigoBaiaColuna.setCellValueFactory(new PropertyValueFactory<>("cod_baia"));
+        capacidadeColuna.setCellValueFactory(new PropertyValueFactory<>("capacidade"));
+        idAlocacaoColuna.setCellValueFactory(new PropertyValueFactory<>("id_alocacao_animal"));
+        animalColuna.setCellValueFactory(new PropertyValueFactory<>("nomeAnimal"));
+        baiaColuna.setCellValueFactory(new PropertyValueFactory<>("descricaoBaia"));
+        dataTransferenciaColuna.setCellValueFactory(new PropertyValueFactory<>("dataTransferenciaFormatada"));
+        atualizarTabelas();
     }
 
     @FXML
     public void adicionarBaia() {
-        abrirFormularioBaia(null, "Adicionar Baia");
+        abrirFormularioBaia(null, "Cadastrar Baia");
     }
 
-    @FXML void editarBaia() {
+    @FXML
+    public void editarBaia() {
         Baia baia = tabelaBaias.getSelectionModel().getSelectedItem();
-
         if (baia == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma baia na tabela para editar.");
+            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma baia para editar.");
             return;
         }
 
-        abrirFormularioBaia(baia, "Editar Animal");
+        abrirFormularioBaia(baia, "Editar Baia");
+        atualizarTabelas();
     }
 
-    @FXML void alocarAnimal() {
-        abrirFormularioAlocacao("Alocar Animal");
+    @FXML
+    public void excluirBaia() {
+        Baia baia = tabelaBaias.getSelectionModel().getSelectedItem();
+        if (baia == null) {
+            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma baia para excluir.");
+            return;
+        }
+
+        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacao.setTitle("Excluir baia");
+        confirmacao.setHeaderText(null);
+        confirmacao.setContentText("Deseja excluir a baia " + baia.getCod_baia() + "?");
+        if (!confirmacao.showAndWait().filter(resposta -> resposta == ButtonType.OK).isPresent()) {
+            return;
+        }
+
+        try {
+            service.excluirBaia(baia);
+            atualizarTabelas();
+        } catch (DadosInvalidosException e) {
+            exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
+        } catch (SQLException e) {
+            exibirAlerta(Alert.AlertType.ERROR, "Não foi possível excluir",
+                    "A baia pode possuir registros de alocação vinculados.\n" + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void alocarAnimal() {
+        Baia baiaSelecionada = tabelaBaias.getSelectionModel().getSelectedItem();
+
+        if (tabelaBaias.getItems().isEmpty()) {
+            exibirAlerta(Alert.AlertType.INFORMATION, "Alocação", "Cadastre uma baia antes de realizar uma alocação.");
+            return;
+        }
+
+        if (baiaSelecionada == null) {
+            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma baia.");
+            return;
+        }
+
+        abrirFormularioAlocacao(baiaSelecionada, "Registrar Alocação");
+        atualizarTabelas();
     }
 
     private void abrirFormularioBaia(Baia baia, String titulo) {
@@ -65,7 +130,7 @@ public class BaiaController {
         }
     }
 
-    private void abrirFormularioAlocacao(String titulo) {
+    private void abrirFormularioAlocacao(Baia baia, String titulo) {
         try {
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("forms/AlocacaoFormView.fxml"));
 
@@ -73,9 +138,21 @@ public class BaiaController {
             stage.setTitle(titulo);
             stage.setScene(new Scene(loader.load()));
 
+            AlocacaoFormController formController = loader.getController();
+            formController.setCbBaia(baia);
+
             stage.showAndWait();
         } catch (IOException e) {
             System.err.println("Erro ao carregar o formulário: " + e.getMessage());
+        }
+    }
+
+    private void atualizarTabelas() {
+        try {
+            tabelaBaias.setItems(FXCollections.observableArrayList(service.listarBaias()));
+            tabelaHistoricoAlocacao.setItems(FXCollections.observableArrayList(service.listarHistoricoAlocacoes()));
+        } catch (SQLException e) {
+            exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
         }
     }
 

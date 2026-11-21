@@ -3,81 +3,127 @@ package com.davidsir1.trabalhon2.controller.view;
 import com.davidsir1.trabalhon2.HelloApplication;
 import com.davidsir1.trabalhon2.controller.form.EspecieFormController;
 import com.davidsir1.trabalhon2.controller.form.RacaFormController;
+import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
 import com.davidsir1.trabalhon2.model.Especie;
 import com.davidsir1.trabalhon2.model.Raca;
+import com.davidsir1.trabalhon2.service.EspecieRacaService;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class EspecieRacaController {
-    @FXML private Button btnAdicionarEspecie;
-    @FXML private Button btnEditarEspecie;
-    @FXML private Button btnExcluirEspecie;
-    @FXML private Button btnAdicionarRaca;
-    @FXML private Button btnEditarRaca;
-    @FXML private Button btnExcluirRaca;
-
     @FXML private TableView<Especie> tabelaEspecies;
+    @FXML private TableColumn<Especie, Integer> idEspecieColuna;
+    @FXML private TableColumn<Especie, String> especieColuna;
     @FXML private TableView<Raca> tabelaRacas;
+    @FXML private TableColumn<Raca, Integer> idRacaColuna;
+    @FXML private TableColumn<Raca, String> racaColuna;
+    @FXML private TableColumn<Raca, String> especieRacaColuna;
 
+    private final EspecieRacaService service = new EspecieRacaService();
+
+    @FXML
     public void initialize() {
-        // Inicializar as tabelas
+        idEspecieColuna.setCellValueFactory(new PropertyValueFactory<>("id_especie"));
+        especieColuna.setCellValueFactory(new PropertyValueFactory<>("especie"));
+        idRacaColuna.setCellValueFactory(new PropertyValueFactory<>("id_raca"));
+        racaColuna.setCellValueFactory(new PropertyValueFactory<>("raca"));
+        especieRacaColuna.setCellValueFactory(new PropertyValueFactory<>("nomeEspecie"));
+        atualizarTabelas();
     }
 
     @FXML
-    public void adicionarEspecie(){
-        abrirFormularioEspecie(null, "Adicionar Especie");
+    public void adicionarEspecie() {
+        abrirFormularioEspecie(null, "Cadastrar Espécie");
+        atualizarTabelas();
     }
 
     @FXML
     public void editarEspecie() {
         Especie especie = tabelaEspecies.getSelectionModel().getSelectedItem();
-
         if (especie == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma especia na tabela para editar.");
+            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma espécie para editar.");
             return;
         }
 
-        abrirFormularioEspecie(especie, "Editar Especie");
+        abrirFormularioEspecie(especie, "Editar Espécie");
+        atualizarTabelas();
+    }
+
+    @FXML
+    public void excluirEspecie() {
+        Especie especie = tabelaEspecies.getSelectionModel().getSelectedItem();
+        if (especie == null) {
+            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma espécie para excluir.");
+            return;
+        }
+        if (!confirmarExclusao("Excluir espécie", "Deseja excluir a espécie " + especie.getEspecie() + "?")) {
+            return;
+        }
+
+        try {
+            service.excluirEspecie(especie);
+            atualizarTabelas();
+        } catch (DadosInvalidosException e) {
+            exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
+        } catch (SQLException e) {
+            exibirAlerta(Alert.AlertType.ERROR, "Não foi possível excluir",
+                    "A espécie pode estar vinculada a raças.\n" + e.getMessage());
+        }
     }
 
     @FXML
     public void adicionarRaca() {
-        abrirFormularioRaca(null, "Adicionar Raça");
+        if (tabelaEspecies.getItems().isEmpty()) {
+            exibirAlerta(Alert.AlertType.INFORMATION, "Espécies",
+                    "Cadastre uma espécie antes de cadastrar uma raça.");
+            return;
+        }
+        abrirFormularioRaca(null, "Cadastrar Raça");
+        atualizarTabelas();
     }
 
     @FXML
     public void editarRaca() {
         Raca raca = tabelaRacas.getSelectionModel().getSelectedItem();
-
         if (raca == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Seleciona uma raça na tabela para editar.");
+            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma raça para editar.");
             return;
         }
 
-        abrirFormularioRaca(raca, "Editar Raça");
+        abrirFormularioRaca(raca, "Editar raça");
+        atualizarTabelas();
     }
 
-    private void abrirFormularioRaca(Raca raca, String titulo) {
+    @FXML
+    public void excluirRaca() {
+        Raca raca = tabelaRacas.getSelectionModel().getSelectedItem();
+        if (raca == null) {
+            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma raça para excluir.");
+            return;
+        }
+        if (!confirmarExclusao("Excluir raça", "Deseja excluir a raça " + raca.getRaca() + "?")) {
+            return;
+        }
+
         try {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("forms/RacaFormView.fxml"));
-
-            Stage stage = new Stage();
-            stage.setTitle(titulo);
-            stage.setScene(new Scene(loader.load()));
-
-            RacaFormController formController = loader.getController();
-            formController.setRacaEdicao(raca);
-
-            stage.showAndWait();
-        } catch (IOException e) {
-            System.err.println("Erro ao carregar o formulário: " + e.getMessage());
+            service.excluirRaca(raca);
+            atualizarTabelas();
+        } catch (DadosInvalidosException e) {
+            exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
+        } catch (SQLException e) {
+            exibirAlerta(Alert.AlertType.ERROR, "Não foi possível excluir",
+                    "A raça pode estar vinculada a animais.\n" + e.getMessage());
         }
     }
 
@@ -98,6 +144,31 @@ public class EspecieRacaController {
         }
     }
 
+    private void abrirFormularioRaca(Raca raca, String titulo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("forms/RacaFormView.fxml"));
+
+            Stage stage = new Stage();
+            stage.setTitle(titulo);
+            stage.setScene(new Scene(loader.load()));
+
+            RacaFormController formController = loader.getController();
+            formController.setRacaEdicao(raca);
+
+            stage.showAndWait();
+        } catch (IOException e) {
+            System.err.println("Erro ao carregar o formulário: " + e.getMessage());
+        }
+    }
+
+    private void atualizarTabelas() {
+        try {
+            tabelaEspecies.setItems(FXCollections.observableArrayList(service.listarEspecies()));
+            tabelaRacas.setItems(FXCollections.observableArrayList(service.listarRacas()));
+        } catch (SQLException e) {
+            exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
+        }
+    }
 
     private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
         Alert alert = new Alert(tipo);
@@ -105,5 +176,13 @@ public class EspecieRacaController {
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
+    }
+
+    private boolean confirmarExclusao(String titulo, String mensagem) {
+        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmacao.setTitle(titulo);
+        confirmacao.setHeaderText(null);
+        confirmacao.setContentText(mensagem);
+        return confirmacao.showAndWait().filter(resposta -> resposta == ButtonType.OK).isPresent();
     }
 }
