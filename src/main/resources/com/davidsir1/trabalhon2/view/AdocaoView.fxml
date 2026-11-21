@@ -42,11 +42,11 @@
                   </VBox>
                   <VBox prefWidth="100.0" spacing="6.0">
                      <children>
-                        <Label styleClass="text-bold" text="Data de Adoçao" />
+                        <Label styleClass="text-bold" text="Data da Adoçao" />
                         <DatePicker fx:id="dataAdocao" maxWidth="1.7976931348623157E308" />
                      </children>
                   </VBox>
-                  <Button fx:id="btnRegistrarAdocao" mnemonicParsing="false" text="Registrar Adoçao">
+                  <Button fx:id="btnRegistrarAdocao" mnemonicParsing="false" onAction="#registrarAdocao" text="Registrar Adoçao">
                      <styleClass>
                         <String fx:value="accent" />
                         <String fx:value="large" />

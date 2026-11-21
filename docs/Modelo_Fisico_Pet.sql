@@ -5,7 +5,7 @@ CREATE DATABASE adocao_bd;
 USE adocao_bd;
 
 -- Comando de criação do usuario
-CREATE USER 'laika'@'localhost' IDENTIFIED BY '1957';
+CREATE USER 'laika'@'%' IDENTIFIED BY '1957';
 
 GRANT SELECT, INSERT, UPDATE, DELETE ON adocao_bd.* TO 'laika'@'localhost';
 

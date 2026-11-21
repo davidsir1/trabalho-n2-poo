@@ -23,6 +23,13 @@ public class Adocao {
         this.data_adocao = data_adocao;
     }
 
+    public Adocao(Usuario usuario, Adotante adotante, Animal animal, LocalDateTime data_adocao) {
+        this.usuario = usuario;
+        this.adotante = adotante;
+        this.animal = animal;
+        this.data_adocao = data_adocao;
+    }
+
     public Adocao(Usuario usuario, Adotante adotante, Animal animal) {
         this.usuario = usuario;
         this.adotante = adotante;

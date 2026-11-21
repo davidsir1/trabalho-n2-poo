@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="20.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="20.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.view.DashboardController">
    <children>
       <Label text="Visao Geral">
          <styleClass>
@@ -21,7 +21,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="card" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Animais Disponíveis" />
-                  <Label styleClass="title-1" text="0" />
+                  <Label fx:id="lblAnimaisDisponiveis" styleClass="title-1" text="0" />
                </children>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -30,7 +30,7 @@
             <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="card" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Adoções Realizadas" />
-                  <Label styleClass="title-1" text="0" />
+                  <Label fx:id="lblAdocoesRealizadas" styleClass="title-1" text="0" />
                </children>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -39,7 +39,7 @@
             <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="card" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Adotantes Cadastrados" />
-                  <Label styleClass="title-1" text="0" />
+                  <Label fx:id="lblAdotantesCadastrados" styleClass="title-1" text="0" />
                </children>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -50,12 +50,12 @@
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
          <children>
             <Label styleClass="title-4" text="Adoções Recentes" />
-            <TableView styleClass="striped" VBox.vgrow="ALWAYS">
+            <TableView fx:id="tabelaAdocoesRecentes" styleClass="striped" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn prefWidth="60.0" text="ID" />
-                <TableColumn prefWidth="200.0" text="Animal" />
-                  <TableColumn prefWidth="250.0" text="Adotante" />
-                  <TableColumn prefWidth="200.0" text="Data da Adoçao" />
+                <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                <TableColumn fx:id="colAnimal" prefWidth="200.0" text="Animal" />
+                  <TableColumn fx:id="colAdotante" prefWidth="250.0" text="Adotante" />
+                  <TableColumn fx:id="colDataAdocao" prefWidth="200.0" text="Data da Adoçao" />
               </columns>
             </TableView>
          </children>
