@@ -45,7 +45,7 @@ public class AdocaoRepository {
         String sql = "SELECT ad.id_adocao, ad.data_adocao, " +
                 "u.id_usuario, u.nome_usuario, u.email_usuario, " +
                 "c.id_cargo, c.cargo, " +
-                "adt.id_aotante, adt.nome_adotante, adt.telfone, adt.email_adotante, adt.endereco, adt.data_cadastro, " +
+                "adt.id_adotante, adt.nome_adotante, adt.telefone, adt.email_adotante, adt.endereco, adt.data_cadastro, " +
                 "an.id_animal, an.nome_animal, an.porte, an.sexo, an.status_adocao, " +
                 "r.id_raca, r.raca, " +
                 "e.id_especie, e.especie " +
@@ -54,7 +54,7 @@ public class AdocaoRepository {
                 "INNER JOIN cargo c ON u.id_cargo = c.id_cargo " +
                 "INNER JOIN adotante adt ON ad.id_adotante = adt.id_adotante " +
                 "INNER JOIN animal an ON ad.id_animal = an.id_animal " +
-                "INNER JOIN raca r ON an.id_raca = " +
+                "INNER JOIN raca r ON an.id_raca = r.id_raca " +
                 "INNER JOIN especie e ON r.id_especie = e.id_especie " +
                 "ORDER BY ad.data_adocao DESC;";
 
