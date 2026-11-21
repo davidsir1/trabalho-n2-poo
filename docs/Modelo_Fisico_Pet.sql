@@ -33,7 +33,7 @@ DROP TABLE IF EXISTS especie;
 
 CREATE TABLE especie (
        id_especie INT AUTO_INCREMENT PRIMARY KEY,
-       especie VARCHAR(60) NOT NULL
+       especie VARCHAR(60) NOT NULL UNIQUE
 );
 
 DROP TABLE IF EXISTS raca;

@@ -51,26 +51,6 @@ public class AlocacaoAnimalRepository {
         return historico;
     }
 
-    public List<Animal> listarAnimais() throws SQLException {
-        String sql = "SELECT a.id_animal, a.nome_animal, a.porte, a.sexo, a.status_adocao, " +
-                "r.id_raca, r.raca, e.id_especie, e.especie " +
-                "FROM animal a " +
-                "INNER JOIN raca r ON a.id_raca = r.id_raca " +
-                "INNER JOIN especie e ON r.id_especie = e.id_especie " +
-                "ORDER BY a.nome_animal;";
-        List<Animal> animais = new ArrayList<>();
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                animais.add(mapearAnimal(rs));
-            }
-        }
-
-        return animais;
-    }
-
     private AlocacaoAnimal mapearAlocacao(ResultSet rs) throws SQLException {
         Animal animal = mapearAnimal(rs);
         Baia baia = new Baia(rs.getInt("id_baia"), rs.getString("cod_baia"), rs.getInt("capacidade"));

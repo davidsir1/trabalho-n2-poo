@@ -41,6 +41,6 @@ public class Baia {
 
     @Override
     public String toString() {
-        return "Baia #" + cod_baia + " (Cap: " + capacidade + ")";
+        return "Baia " + cod_baia + " (Cap: " + capacidade + ")";
     }
 }

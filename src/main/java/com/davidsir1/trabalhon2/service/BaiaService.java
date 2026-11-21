@@ -5,12 +5,14 @@ import com.davidsir1.trabalhon2.model.Animal;
 import com.davidsir1.trabalhon2.model.AlocacaoAnimal;
 import com.davidsir1.trabalhon2.model.Baia;
 import com.davidsir1.trabalhon2.repository.AlocacaoAnimalRepository;
+import com.davidsir1.trabalhon2.repository.AnimalRepository;
 import com.davidsir1.trabalhon2.repository.BaiaRepository;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class BaiaService {
+    private final AnimalRepository animalRepository = new AnimalRepository();
     private final BaiaRepository baiaRepository = new BaiaRepository();
     private final AlocacaoAnimalRepository alocacaoAnimalRepository = new AlocacaoAnimalRepository();
 
@@ -60,7 +62,7 @@ public class BaiaService {
     }
 
     public List<Animal> listarAnimais() throws SQLException {
-        return alocacaoAnimalRepository.listarAnimais();
+        return animalRepository.listarAnimais();
     }
 
     public List<AlocacaoAnimal> listarHistoricoAlocacoes() throws SQLException {
