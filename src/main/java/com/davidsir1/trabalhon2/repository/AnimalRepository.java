@@ -19,7 +19,7 @@ public class AnimalRepository {
     }
 
     public List<Animal> buscarPorStatusAdocao(String status_adocao) {
-        String sql = "SELECT a.id_animal, a.nome_animal, a.porte, a.sexo, a.status_adocao, r.id_raca, r.raca AS raca, e.id_especie, e.especie AS especie " +
+        String sql = "SELECT a.id_animal, a.nome_animal, a.porte, a.sexo, a.status_adocao, r.id_raca, r.raca, e.id_especie, e.especie " +
                 "FROM animal a " +
                 "INNER JOIN raca r ON a.id_raca = r.id_raca " +
                 "INNER JOIN especie e ON r.id_especie = e.id_especie " +
