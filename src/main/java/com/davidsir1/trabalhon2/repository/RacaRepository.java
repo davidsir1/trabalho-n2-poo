@@ -63,4 +63,26 @@ public class RacaRepository {
 
         return racas;
     }
+
+    public List<Raca> listarRacaPorEspecie(String especie) throws SQLException {
+        String sql = "SELECT r.id_raca, r.raca, e.id_especie, e.especie FROM raca r\n" +
+                "INNER JOIN especie e ON r.id_especie = e.id_especie\n" +
+                "WHERE especie = ?;";
+
+        List<Raca> racas = new ArrayList<>();
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, especie);
+
+            try (ResultSet rs = stmt.executeQuery()){
+                while (rs.next()) {
+                    Especie e = new Especie(rs.getInt("id_especie"), rs.getString("especie"));
+                    Raca raca = new Raca(rs.getInt("id_raca"), rs.getString("raca"), e);
+                    racas.add(raca);
+                }
+            }
+        }
+
+        return racas;
+    }
 }

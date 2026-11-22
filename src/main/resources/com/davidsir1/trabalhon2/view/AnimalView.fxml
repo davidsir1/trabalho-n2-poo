@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="16.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.view.AnimalController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" spacing="16.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.view.AnimalController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -24,28 +24,29 @@
       </Label>
       <HBox prefWidth="200.0" spacing="10.0">
          <children>
-            <TextField fx:id="inBuscarAnimalNome" promptText="Buscar por nome..." HBox.hgrow="ALWAYS" />
-            <ComboBox fx:id="selStatusAnimal" prefWidth="160.0" promptText="Filtrar por Status" />
-            <Button fx:id="btnFiltrar" mnemonicParsing="false" styleClass="button-outlined" text="Filtrar" />
+            <TextField fx:id="inBuscarAnimalNome" onAction="#filtrarAnimais" promptText="Buscar por nome..." HBox.hgrow="ALWAYS" />
+            <ComboBox fx:id="selStatusAnimal" onAction="#filtrarAnimais" prefWidth="160.0" promptText="Filtrar por Status" />
+            <Button fx:id="btnFiltrar" mnemonicParsing="false" onAction="#filtrarAnimais" styleClass="button-outlined" text="Filtrar" />
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="16.0" VBox.vgrow="ALWAYS">
          <children>
             <TableView fx:id="tabelaAnimal" prefHeight="200.0" prefWidth="550.0" styleClass="striped" HBox.hgrow="ALWAYS">
               <columns>
-                <TableColumn prefWidth="50.0" text="ID" />
-                  <TableColumn prefWidth="140.0" text="Nome" />
-                  <TableColumn prefWidth="90.0" text="Porte" />
-                  <TableColumn text="Sexo" />
-                  <TableColumn prefWidth="110.0" text="Raça" />
-                  <TableColumn prefWidth="100.0" text="Status" />
+                <TableColumn fx:id="idColuna" prefWidth="50.0" text="ID" />
+                  <TableColumn fx:id="nomeColuna" prefWidth="140.0" text="Nome" />
+                  <TableColumn fx:id="porteColuna" prefWidth="90.0" text="Porte" />
+                  <TableColumn fx:id="sexoColuna" text="Sexo" />
+                  <TableColumn fx:id="racaColuna" prefWidth="110.0" text="Raça" />
+                  <TableColumn fx:id="especieColuna" prefWidth="110.0" text="Especie" />
+                  <TableColumn fx:id="statusColuna" prefWidth="100.0" text="Status" />
               </columns>
             </TableView>
             <VBox alignment="TOP_CENTER" prefWidth="250.0" spacing="12.0">
                <children>
                   <Button fx:id="btnAdicionarAnimal" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#adicionarAnimal" styleClass="accent" text="Adicionar Animal" />
                   <Button fx:id="btnEditarAnimal" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editarAnimal" styleClass="button-outlined" text="Editar Animal" />
-                  <Button fx:id="btnExcluirAnimal" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="danger" text="Excluir Animal" />
+                  <Button fx:id="btnExcluirAnimal" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#excluirAnimal" styleClass="danger" text="Excluir Animal" />
                </children>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

@@ -7,6 +7,7 @@ public class Animal {
     private String sexo;
     private String status_adocao;
     private Raca raca;
+    private Especie especie;
 
     public Animal() {
         this.status_adocao = "DISPONIVEL";
@@ -71,6 +72,10 @@ public class Animal {
 
     public void setRaca(Raca raca) {
         this.raca = raca;
+    }
+
+    public Especie getEspecie() {
+        return this.raca.getEspecie();
     }
 
     @Override

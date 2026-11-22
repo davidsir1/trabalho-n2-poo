@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="520.0" spacing="12.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.form.AnimalFormController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="520.0" spacing="12.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.form.AnimalFormController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -16,7 +16,7 @@
       <VBox prefWidth="100.0" spacing="6.0">
          <children>
             <Label text="Nome do Animal" />
-            <TextField fx:id="inNomeAnimal" text="Ex.: Rex, Lua, Aristóteles..." />
+            <TextField fx:id="inNomeAnimal" promptText="Ex.: Rex, Lua, Aristóteles..." />
          </children>
       </VBox>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="12.0">
@@ -40,7 +40,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="6.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Espécie" />
-                  <ComboBox fx:id="cbEspecie" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Selecione a espécie" />
+                  <ComboBox fx:id="cbEspecie" maxWidth="1.7976931348623157E308" onAction="#filtrarRacasPorEspecie" prefWidth="150.0" promptText="Selecione a espécie" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="6.0" HBox.hgrow="ALWAYS">
@@ -59,8 +59,8 @@
       </VBox>
       <HBox alignment="BOTTOM_CENTER" prefWidth="200.0" spacing="12.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button mnemonicParsing="false" styleClass="button-outlined" text="Cancelar" />
-            <Button fx:id="btnConfirmar" mnemonicParsing="false" styleClass="accent" text="Confirmar" />
+            <Button mnemonicParsing="false" onAction="#cancelar" styleClass="button-outlined" text="Cancelar" />
+            <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" styleClass="accent" text="Confirmar" />
          </children>
       </HBox>
    </children>

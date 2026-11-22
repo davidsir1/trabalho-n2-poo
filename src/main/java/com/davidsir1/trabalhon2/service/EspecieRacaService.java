@@ -68,6 +68,10 @@ public class EspecieRacaService {
         return racaRepository.listarTodos();
     }
 
+    public List<Raca> listarRacaPorEspecie(String especie) throws SQLException {
+        return racaRepository.listarRacaPorEspecie(especie);
+    }
+
     private void validarNome(String nome, String tipo) throws DadosInvalidosException {
         if (nome == null || nome.trim().isEmpty()) {
             throw new DadosInvalidosException("O nome da " + tipo + " é obrigatório.");
