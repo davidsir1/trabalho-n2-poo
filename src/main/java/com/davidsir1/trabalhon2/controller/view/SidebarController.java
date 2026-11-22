@@ -1,14 +1,7 @@
 package com.davidsir1.trabalhon2.controller.view;
 
-import com.davidsir1.trabalhon2.HelloApplication;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class SidebarController {
     @FXML private Button btnDashboard;
@@ -53,31 +46,6 @@ public class SidebarController {
     @FXML
     public void trocarParaAdocaoView() {
         trocarSubTela("AdocaoView.fxml");
-    }
-
-    @FXML
-    public void trocarParaUsuarioView() {
-        trocarSubTela("UsuarioView.fxml");
-    }
-
-    @FXML
-    private void realizarLogout () {
-        try {
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("view/LoginView.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) btnSair.getScene().getWindow();
-            Scene scene = new Scene(root, 1280, 720);
-
-            stage.setScene(scene);
-            stage.setTitle("Sistema de Adoção");
-            stage.centerOnScreen();
-            stage.show();
-        } catch (IOException e) {
-            System.err.println("Erro ao retornar para a tela de login: " + e.getMessage());
-        } catch (NullPointerException | IllegalStateException e) {
-            System.err.println("Houve falha ao abrir a tela LoginView.fxml: " + e.getMessage());
-        }
     }
 
     private void trocarSubTela(String fxml) {

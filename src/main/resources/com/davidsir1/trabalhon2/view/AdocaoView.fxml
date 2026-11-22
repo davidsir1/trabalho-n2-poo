@@ -70,8 +70,6 @@
                   <Label fx:id="adotanteSelecionado" styleClass="text-bold" text="Nenhum Selecionado" />
                   <Label styleClass="text-muted" text="Animal Selecionado:" />
                   <Label fx:id="animalSelecionado" styleClass="text-bold" text="Nenhum Selecionado" />
-                  <Label styleClass="text-muted" text="Responsavel pelo Registro:" />
-                  <Label fx:id="usuarioLogado" styleClass="text-bold" text="Usuario Logado" />
                </children>
             </VBox>
          </children>
