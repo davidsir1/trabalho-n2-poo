@@ -4,6 +4,7 @@ import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
 import com.davidsir1.trabalhon2.model.Cargo;
 import com.davidsir1.trabalhon2.model.Usuario;
 import com.davidsir1.trabalhon2.service.UsuarioService;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -59,18 +60,18 @@ public class UsuarioFormController {
         if (usuarioEdicao == null) {
             try {
                 usuarioService.cadastrar(nome, email, cargo, senha);
-                exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Usuário cadastrado com sucesso.");
+                AlertaUtil.exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Usuário cadastrado com sucesso.");
                 cancelar();
             } catch (DadosInvalidosException e) {
-                exibirAlerta(Alert.AlertType.ERROR, "Error", e.getMessage());
+                AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Error", e.getMessage());
             }
         } else {
             try {
                 usuarioService.atualizar(usuarioEdicao, nome, email, cargo, senha);
-                exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Usuário atualizado com sucesso.");
+                AlertaUtil.exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Usuário atualizado com sucesso.");
                 cancelar();
             } catch (DadosInvalidosException e) {
-                exibirAlerta(Alert.AlertType.ERROR, "Error", e.getMessage());
+                AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Error", e.getMessage());
             }
         }
     }
@@ -79,13 +80,5 @@ public class UsuarioFormController {
     public void cancelar() {
         Stage stage = (Stage) inNomeUsuario.getScene().getWindow();
         stage.close();
-    }
-
-    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 }

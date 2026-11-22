@@ -4,6 +4,7 @@ import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
 import com.davidsir1.trabalhon2.model.Adotante;
 import com.davidsir1.trabalhon2.model.Animal;
 import com.davidsir1.trabalhon2.service.AdocaoService;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -41,26 +42,20 @@ public class AdocaoController {
         Animal animal = selAnimalDisponivel.getValue();
         LocalDate data = dataAdocao.getValue();
 
-        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmacao.setTitle("Confirmar Adoção");
-        confirmacao.setHeaderText("Deseja confirmar o registro desta adoção?");
-        confirmacao.setContentText(
-                "Adotante: " + (adotante != null ? adotante.getNome_adotante() : "-") + "\n" +
-                "Animal: " + (animal != null ? animal.getNome_animal() : "-")
-        );
-
-        Optional<ButtonType> resposta = confirmacao.showAndWait();
-        if (resposta.isEmpty() || resposta.get() != ButtonType.OK) {
+        if (!AlertaUtil.exibirConfirmacao("Confirmar Adoção",
+                "Deseja confirmar o registro desta adoção?",
+                "Adotante: " + (adotante != null ? adotante.getNome_adotante() : "não selecionado") + "\n" +
+                        "Animal: " + (animal != null ? animal.getNome_animal() : "não selecionado"))) {
             return;
         }
 
         try {
             adocaoService.registrarAdocao(animal, adotante, data);
-            exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Adoção registrada com sucesso!");
+            AlertaUtil.exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Adoção registrada com sucesso!");
             limparFormulario();
             carregarListas();
         } catch (DadosInvalidosException e) {
-            exibirAlerta(Alert.AlertType.WARNING, "Dados Inválidos", e.getMessage());
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados Inválidos", e.getMessage());
         }
     }
 
@@ -114,13 +109,5 @@ public class AdocaoController {
         dataAdocao.setValue(LocalDate.now());
         adotanteSelecionado.setText("Nenhum selecionado");
         animalSelecionado.setText("Nenhum selecionado");
-    }
-
-    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 }

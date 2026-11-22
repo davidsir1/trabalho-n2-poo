@@ -4,6 +4,7 @@ import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
 import com.davidsir1.trabalhon2.model.Especie;
 import com.davidsir1.trabalhon2.model.Raca;
 import com.davidsir1.trabalhon2.service.EspecieRacaService;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -53,22 +54,22 @@ public class RacaFormController {
         if (racaEdicao == null) {
             try {
                 especieRacaService.cadastrarRaca(nomeRaca, especieSelecionada);
-                exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Raça cadastrada com sucesso.");
+                AlertaUtil.exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Raça cadastrada com sucesso.");
                 cancelar();
             } catch (DadosInvalidosException e) {
-                exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
+                AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
             } catch (SQLException e) {
-                exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
+                AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
             }
         } else {
             try {
                 especieRacaService.atualizarRaca(racaEdicao, nomeRaca, especieSelecionada);
-                exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Raça atualizada com sucesso.");
+                AlertaUtil.exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Raça atualizada com sucesso.");
                 cancelar();
             } catch (DadosInvalidosException e) {
-                exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
+                AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
             } catch (SQLException e) {
-                exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
+                AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
             }
         }
     }
@@ -77,13 +78,5 @@ public class RacaFormController {
     public void cancelar() {
         Stage stage = (Stage) inNomeRaca.getScene().getWindow();
         stage.close();
-    }
-
-    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 }

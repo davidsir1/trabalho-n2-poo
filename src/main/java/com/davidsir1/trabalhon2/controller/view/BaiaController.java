@@ -8,6 +8,7 @@ import com.davidsir1.trabalhon2.model.Animal;
 import com.davidsir1.trabalhon2.model.AlocacaoAnimal;
 import com.davidsir1.trabalhon2.model.Baia;
 import com.davidsir1.trabalhon2.service.BaiaService;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,7 +61,7 @@ public class BaiaController {
     public void editarBaia() {
         Baia baia = tabelaBaias.getSelectionModel().getSelectedItem();
         if (baia == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma baia para editar.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma baia para editar.");
             return;
         }
 
@@ -72,15 +73,11 @@ public class BaiaController {
     public void excluirBaia() {
         Baia baia = tabelaBaias.getSelectionModel().getSelectedItem();
         if (baia == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma baia para excluir.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma baia para excluir.");
             return;
         }
 
-        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmacao.setTitle("Excluir baia");
-        confirmacao.setHeaderText(null);
-        confirmacao.setContentText("Deseja excluir a baia " + baia.getCod_baia() + "?");
-        if (!confirmacao.showAndWait().filter(resposta -> resposta == ButtonType.OK).isPresent()) {
+        if (!AlertaUtil.exibirConfirmacao("Excluir Baia", null, "Deseja excluir a baia " + baia.getCod_baia() + "?")) {
             return;
         }
 
@@ -88,9 +85,9 @@ public class BaiaController {
             service.excluirBaia(baia);
             atualizarTabelas();
         } catch (DadosInvalidosException e) {
-            exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
         } catch (SQLException e) {
-            exibirAlerta(Alert.AlertType.ERROR, "Não foi possível excluir",
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Não foi possível excluir",
                     "A baia pode possuir registros de alocação vinculados.\n" + e.getMessage());
         }
     }
@@ -100,12 +97,12 @@ public class BaiaController {
         Baia baiaSelecionada = tabelaBaias.getSelectionModel().getSelectedItem();
 
         if (tabelaBaias.getItems().isEmpty()) {
-            exibirAlerta(Alert.AlertType.INFORMATION, "Alocação", "Cadastre uma baia antes de realizar uma alocação.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.INFORMATION, "Alocação", "Cadastre uma baia antes de realizar uma alocação.");
             return;
         }
 
         if (baiaSelecionada == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma baia.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma baia.");
             return;
         }
 
@@ -152,15 +149,7 @@ public class BaiaController {
             tabelaBaias.setItems(FXCollections.observableArrayList(service.listarBaias()));
             tabelaHistoricoAlocacao.setItems(FXCollections.observableArrayList(service.listarHistoricoAlocacoes()));
         } catch (SQLException e) {
-            exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
         }
-    }
-
-    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 }

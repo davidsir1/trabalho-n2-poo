@@ -5,6 +5,7 @@ import com.davidsir1.trabalhon2.model.Animal;
 import com.davidsir1.trabalhon2.model.Baia;
 import com.davidsir1.trabalhon2.repository.AlocacaoAnimalRepository;
 import com.davidsir1.trabalhon2.service.BaiaService;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -30,7 +31,7 @@ public class AlocacaoFormController {
             );
         } catch (SQLException e) {
             System.err.println("Erro ao listar os animais: " + e.getMessage());
-            exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", e.getMessage());
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", e.getMessage());
             cancelar();
         }
         /*
@@ -56,12 +57,12 @@ public class AlocacaoFormController {
         // o status de adoção como ADOTADO
         try {
             baiaService.alocarAnimal(cbAnimal.getValue(), cbBaia.getValue());
-            exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Animal alocado com sucesso.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Animal alocado com sucesso.");
             cancelar();
         } catch (DadosInvalidosException e) {
-            exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
         } catch (SQLException e) {
-            exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
         }
     }
 
@@ -69,13 +70,5 @@ public class AlocacaoFormController {
     public void cancelar() {
         Stage stage = (Stage) cbAnimal.getScene().getWindow();
         stage.close();
-    }
-
-    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 }

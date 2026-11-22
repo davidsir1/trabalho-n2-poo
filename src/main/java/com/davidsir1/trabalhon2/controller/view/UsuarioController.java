@@ -5,6 +5,7 @@ import com.davidsir1.trabalhon2.controller.form.UsuarioFormController;
 import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
 import com.davidsir1.trabalhon2.model.Usuario;
 import com.davidsir1.trabalhon2.service.UsuarioService;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -52,7 +53,7 @@ public class UsuarioController {
         Usuario usuario = tabelaUsuarios.getSelectionModel().getSelectedItem();
 
         if (usuario == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione um usuário na tabela para editar.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione um usuário na tabela para editar.");
             return;
         }
 
@@ -64,7 +65,7 @@ public class UsuarioController {
         Usuario usuario = tabelaUsuarios.getSelectionModel().getSelectedItem();
 
         if (usuario == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione um usuário na tabela para excluir.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione um usuário na tabela para excluir.");
             return;
         }
 
@@ -77,9 +78,9 @@ public class UsuarioController {
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
             try {
                 usuarioService.excluir(usuario);
-                exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Usuário excluído com sucesso.");
+                AlertaUtil.exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Usuário excluído com sucesso.");
             } catch (DadosInvalidosException e) {
-                exibirAlerta(Alert.AlertType.ERROR, "Error", e.getMessage());
+                AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Error", e.getMessage());
             }
         }
     }
@@ -110,13 +111,5 @@ public class UsuarioController {
 
     private void carregarUsuarios() {
         tabelaUsuarios.setItems(FXCollections.observableArrayList(usuarioService.listarTodos()));
-    }
-
-    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 }

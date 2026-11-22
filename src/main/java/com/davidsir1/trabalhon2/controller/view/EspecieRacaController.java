@@ -7,6 +7,7 @@ import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
 import com.davidsir1.trabalhon2.model.Especie;
 import com.davidsir1.trabalhon2.model.Raca;
 import com.davidsir1.trabalhon2.service.EspecieRacaService;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,7 +53,7 @@ public class EspecieRacaController {
     public void editarEspecie() {
         Especie especie = tabelaEspecies.getSelectionModel().getSelectedItem();
         if (especie == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma espécie para editar.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma espécie para editar.");
             return;
         }
 
@@ -64,10 +65,10 @@ public class EspecieRacaController {
     public void excluirEspecie() {
         Especie especie = tabelaEspecies.getSelectionModel().getSelectedItem();
         if (especie == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma espécie para excluir.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma espécie para excluir.");
             return;
         }
-        if (!confirmarExclusao("Excluir espécie", "Deseja excluir a espécie " + especie.getEspecie() + "?")) {
+        if (!AlertaUtil.exibirConfirmacao("Excluir espécie", null, "Deseja excluir a espécie " + especie.getEspecie() + "?")) {
             return;
         }
 
@@ -75,9 +76,9 @@ public class EspecieRacaController {
             service.excluirEspecie(especie);
             atualizarTabelas();
         } catch (DadosInvalidosException e) {
-            exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
         } catch (SQLException e) {
-            exibirAlerta(Alert.AlertType.ERROR, "Não foi possível excluir",
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Não foi possível excluir",
                     "A espécie pode estar vinculada a raças.\n" + e.getMessage());
         }
     }
@@ -85,7 +86,7 @@ public class EspecieRacaController {
     @FXML
     public void adicionarRaca() {
         if (tabelaEspecies.getItems().isEmpty()) {
-            exibirAlerta(Alert.AlertType.INFORMATION, "Espécies",
+            AlertaUtil.exibirAlerta(Alert.AlertType.INFORMATION, "Espécies",
                     "Cadastre uma espécie antes de cadastrar uma raça.");
             return;
         }
@@ -97,7 +98,7 @@ public class EspecieRacaController {
     public void editarRaca() {
         Raca raca = tabelaRacas.getSelectionModel().getSelectedItem();
         if (raca == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma raça para editar.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma raça para editar.");
             return;
         }
 
@@ -109,10 +110,10 @@ public class EspecieRacaController {
     public void excluirRaca() {
         Raca raca = tabelaRacas.getSelectionModel().getSelectedItem();
         if (raca == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma raça para excluir.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione uma raça para excluir.");
             return;
         }
-        if (!confirmarExclusao("Excluir raça", "Deseja excluir a raça " + raca.getRaca() + "?")) {
+        if (!AlertaUtil.exibirConfirmacao("Excluir raça", null, "Deseja excluir a raça " + raca.getRaca() + "?")) {
             return;
         }
 
@@ -120,9 +121,9 @@ public class EspecieRacaController {
             service.excluirRaca(raca);
             atualizarTabelas();
         } catch (DadosInvalidosException e) {
-            exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
         } catch (SQLException e) {
-            exibirAlerta(Alert.AlertType.ERROR, "Não foi possível excluir",
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Não foi possível excluir",
                     "A raça pode estar vinculada a animais.\n" + e.getMessage());
         }
     }
@@ -166,23 +167,7 @@ public class EspecieRacaController {
             tabelaEspecies.setItems(FXCollections.observableArrayList(service.listarEspecies()));
             tabelaRacas.setItems(FXCollections.observableArrayList(service.listarRacas()));
         } catch (SQLException e) {
-            exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
         }
-    }
-
-    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
-    }
-
-    private boolean confirmarExclusao(String titulo, String mensagem) {
-        Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmacao.setTitle(titulo);
-        confirmacao.setHeaderText(null);
-        confirmacao.setContentText(mensagem);
-        return confirmacao.showAndWait().filter(resposta -> resposta == ButtonType.OK).isPresent();
     }
 }

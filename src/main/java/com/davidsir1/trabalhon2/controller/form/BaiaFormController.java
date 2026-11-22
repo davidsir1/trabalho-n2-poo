@@ -3,6 +3,7 @@ package com.davidsir1.trabalhon2.controller.form;
 import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
 import com.davidsir1.trabalhon2.model.Baia;
 import com.davidsir1.trabalhon2.service.BaiaService;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -43,26 +44,26 @@ public class BaiaFormController {
         if (baiaEdicao == null) {
             try {
                 baiaService.cadastrarBaia(codBaia, capacidade);
-                exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Baia cadastrada com sucesso.");
+                AlertaUtil.exibirAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Baia cadastrada com sucesso.");
                 cancelar();
             } catch (NumberFormatException e) {
-                exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", "A capacidade deve ser um número inteiro.");
+                AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", "A capacidade deve ser um número inteiro.");
             } catch (DadosInvalidosException e) {
-                exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
+                AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
             } catch (SQLException e) {
-                exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
+                AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
             }
         } else {
             try {
                 baiaService.atualizarBaia(baiaEdicao, codBaia, capacidade);
-                exibirAlerta(Alert.AlertType.WARNING, "Sucesso", "Baia atualizada com sucesso.");
+                AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Sucesso", "Baia atualizada com sucesso.");
                 cancelar();
             } catch (NumberFormatException e) {
-                exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", "A capacidade deve ser um número inteiro.");
+                AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", "A capacidade deve ser um número inteiro.");
             } catch (DadosInvalidosException e) {
-                exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
+                AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
             } catch (SQLException e) {
-                exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
+                AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", e.getMessage());
             }
         }
     }
@@ -71,13 +72,5 @@ public class BaiaFormController {
     public void cancelar() {
         Stage stage = (Stage) inCodigoBaia.getScene().getWindow();
         stage.close();
-    }
-
-    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 }

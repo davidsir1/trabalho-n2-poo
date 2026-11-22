@@ -3,6 +3,7 @@ package com.davidsir1.trabalhon2.controller.view;
 import com.davidsir1.trabalhon2.HelloApplication;
 import com.davidsir1.trabalhon2.controller.form.AnimalFormController;
 import com.davidsir1.trabalhon2.model.Animal;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,7 +30,7 @@ public class AnimalController {
         Animal animal = tabelaAnimal.getSelectionModel().getSelectedItem();
 
         if (animal == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione um animal na tabela para editar.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione um animal na tabela para editar.");
             return;
         }
 
@@ -51,13 +52,5 @@ public class AnimalController {
         } catch (IOException e) {
             System.err.println("Erro ao carregar o formulário: " + e.getMessage());
         }
-    }
-
-    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 }

@@ -3,6 +3,7 @@ package com.davidsir1.trabalhon2.controller.view;
 import com.davidsir1.trabalhon2.HelloApplication;
 import com.davidsir1.trabalhon2.controller.form.AdotanteFormController;
 import com.davidsir1.trabalhon2.model.Adotante;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -36,7 +37,7 @@ public class AdotanteController {
         Adotante adotante = tabelaAdotante.getSelectionModel().getSelectedItem();
 
         if (adotante == null) {
-            exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione um adotante da tabela para editar.");
+            AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Atenção", "Selecione um adotante da tabela para editar.");
             return;
         }
 
@@ -58,13 +59,5 @@ public class AdotanteController {
         } catch (IOException e) {
             System.err.println("Erro ao carregar o formulário: " + e.getMessage());
         }
-    }
-
-    private void exibirAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
     }
 }
