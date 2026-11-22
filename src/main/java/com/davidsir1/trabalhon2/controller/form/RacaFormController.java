@@ -31,6 +31,7 @@ public class RacaFormController {
             cbEspecie.setItems(FXCollections.observableArrayList(especieRacaService.listarEspecies()));
         } catch (SQLException e) {
             System.err.println("Erro ao listar as especies: " + e.getMessage());
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao listar as especies.");
             cancelar();
         }
     }
