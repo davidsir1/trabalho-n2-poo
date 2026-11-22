@@ -12,9 +12,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class AdotanteController {
     @FXML private Button btnCadastrarAdotante;
@@ -107,6 +109,11 @@ public class AdotanteController {
 
             AdotanteFormController formController = loader.getController();
             formController.setAdotanteEdicao(adotante);
+
+            InputStream iconStream = HelloApplication.class.getResourceAsStream("icons/Doghead48x48.png");
+            if (iconStream != null) {
+                stage.getIcons().add(new Image(iconStream));
+            }
 
             stage.showAndWait();
         } catch (IOException e) {

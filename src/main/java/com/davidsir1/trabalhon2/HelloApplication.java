@@ -4,9 +4,11 @@ import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class HelloApplication extends Application {
     @Override
@@ -18,6 +20,11 @@ public class HelloApplication extends Application {
 
         String css = HelloApplication.class.getResource("css/style.css").toExternalForm();
         scene.getStylesheets().add(css);
+
+        InputStream iconStream = HelloApplication.class.getResourceAsStream("icons/Doghead48x48.png");
+        if (iconStream != null) {
+            stage.getIcons().add(new Image(iconStream));
+        }
 
         stage.setTitle("Sistema de Adoção");
         stage.setScene(scene);

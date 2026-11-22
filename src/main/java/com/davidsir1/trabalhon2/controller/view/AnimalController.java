@@ -10,9 +10,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class AnimalController {
     @FXML private Button btnAdicionarAnimal;
@@ -47,6 +49,11 @@ public class AnimalController {
 
             AnimalFormController formController = loader.getController();
             formController.setAnimalEdicao(animal);
+
+            InputStream iconStream = HelloApplication.class.getResourceAsStream("icons/Doghead48x48.png");
+            if (iconStream != null) {
+                stage.getIcons().add(new Image(iconStream));
+            }
 
             stage.showAndWait();
         } catch (IOException e) {

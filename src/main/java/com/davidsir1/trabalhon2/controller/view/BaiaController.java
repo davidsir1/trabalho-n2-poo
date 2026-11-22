@@ -20,9 +20,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -121,6 +123,11 @@ public class BaiaController {
             BaiaFormController formController = loader.getController();
             formController.setBaiaEdicao(baia);
 
+            InputStream iconStream = HelloApplication.class.getResourceAsStream("icons/Doghead48x48.png");
+            if (iconStream != null) {
+                stage.getIcons().add(new Image(iconStream));
+            }
+
             stage.showAndWait();
         } catch (IOException e) {
             System.err.println("Erro ao carregar o formulário: " + e.getMessage());
@@ -137,6 +144,11 @@ public class BaiaController {
 
             AlocacaoFormController formController = loader.getController();
             formController.setCbBaia(baia);
+
+            InputStream iconStream = HelloApplication.class.getResourceAsStream("icons/Doghead48x48.png");
+            if (iconStream != null) {
+                stage.getIcons().add(new Image(iconStream));
+            }
 
             stage.showAndWait();
         } catch (IOException e) {
