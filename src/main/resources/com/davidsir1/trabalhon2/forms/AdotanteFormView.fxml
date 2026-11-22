@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="560.0" spacing="12.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.form.AdotanteFormController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="560.0" spacing="12.0" styleClass="fundo-tela" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.form.AdotanteFormController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -42,8 +42,8 @@
         </VBox>
         <HBox alignment="BOTTOM_RIGHT" spacing="12.0" VBox.vgrow="ALWAYS">
             <children>
-                <Button mnemonicParsing="false" styleClass="button-outlined" text="Cancelar" />
-                <Button fx:id="btnConfirmar" mnemonicParsing="false" styleClass="accent" text="Confirmar" />
+                <Button mnemonicParsing="false" onAction="#cancelar" styleClass="button-outlined" text="Cancelar" />
+                <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" styleClass="accent" text="Confirmar" />
             </children>
         </HBox>
     </children>
