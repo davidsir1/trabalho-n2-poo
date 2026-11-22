@@ -62,7 +62,7 @@ public class BaiaService {
     }
 
     public List<Animal> listarAnimais() throws SQLException {
-        return animalRepository.listarAnimais();
+        return animalRepository.listarTodos();
     }
 
     public List<AlocacaoAnimal> listarHistoricoAlocacoes() throws SQLException {
