@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS raca;
 
 CREATE TABLE raca (
        id_raca INT AUTO_INCREMENT PRIMARY KEY,
-       raca VARCHAR(50) NOT NULL,
+       raca VARCHAR(50) NOT NULL UNIQUE,
        id_especie INT NOT NULL,
        FOREIGN KEY (id_especie) REFERENCES especie(id_especie)
 );
@@ -43,7 +43,7 @@ DROP TABLE IF EXISTS baia;
 
 CREATE TABLE baia (
        id_baia INT AUTO_INCREMENT PRIMARY KEY,
-       cod_baia VARCHAR(30) NOT NULL,
+       cod_baia VARCHAR(30) NOT NULL UNIQUE,
        capacidade INT NOT NULL
 );
 
@@ -76,7 +76,6 @@ CREATE TABLE adocao (
       id_adotante INT NOT NULL,
       id_animal INT NOT NULL,
       data_adocao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
       FOREIGN KEY (id_adotante) REFERENCES adotante(id_adotante),
       FOREIGN KEY (id_animal) REFERENCES animal(id_animal)
 );
@@ -126,3 +125,19 @@ INSERT INTO baia(cod_baia, capacidade) VALUES
 ('B107', 2),
 ('B108', 2),
 ('B109', 1);
+
+-- Inserção de Animais na tabela
+INSERT INTO animal(nome_animal, porte, sexo, status_adocao, id_raca) VALUES
+('Thor', 'Grande', 'Macho', 'DISPONIVEL', 1),
+('Mel', 'Grande', 'Fêmea', 'DISPONIVEL', 2),
+('Pipoca', 'Pequeno', 'Fêmea', 'ADOTADO', 3),
+('Bento', 'Médio', 'Macho', 'DISPONIVEL', 4),
+('Luna', 'Pequeno', 'Fêmea', 'DISPONIVEL', 5),
+('Simba', 'Médio', 'Macho', 'EM_PROCESSO', 6),
+('Nina', 'Pequeno', 'Fêmea', 'DISPONIVEL', 7),
+('Oliver', 'Médio', 'Macho', 'ADOTADO', 8),
+('Piu', 'Pequeno', 'Macho', 'DISPONIVEL', 9),
+('Kiwi', 'Pequeno', 'Fêmea', 'DISPONIVEL', 10),
+('Fred', 'Médio', 'Macho', 'INDISPONIVEL', 11),
+('Bolinha', 'Pequeno', 'Macho', 'DISPONIVEL', 12),
+('Amora', 'Pequeno', 'Fêmea', 'DISPONIVEL', 13);
