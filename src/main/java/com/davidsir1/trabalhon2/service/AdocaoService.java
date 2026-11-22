@@ -51,7 +51,6 @@ public class AdocaoService {
 
         LocalDateTime dataHoraAdocao = LocalDateTime.of(dataSelecionada, LocalTime.now());
         Adocao novaAdocao = new Adocao(
-                null,
                 adotante,
                 animal,
                 dataHoraAdocao);
