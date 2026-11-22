@@ -24,10 +24,10 @@ public class DashboardController {
 
     @FXML
     public void initialize() {
-        colId.setCellValueFactory(new PropertyValueFactory<Adocao, Integer>("id_animal"));
-        colAnimal.setCellValueFactory(new PropertyValueFactory<Adocao, String>("nome_animal"));
-        colAdotante.setCellValueFactory(new PropertyValueFactory<Adocao, String>("nome_adotante"));
-        colDataAdocao.setCellValueFactory(new PropertyValueFactory<Adocao, String>("data_adocao"));
+        colId.setCellValueFactory(new PropertyValueFactory<Adocao, Integer>("id_adocao"));
+        colAnimal.setCellValueFactory(new PropertyValueFactory<Adocao, String>("nomeAnimal"));
+        colAdotante.setCellValueFactory(new PropertyValueFactory<Adocao, String>("nomeAdotante"));
+        colDataAdocao.setCellValueFactory(new PropertyValueFactory<Adocao, String>("dataAdocaoFormatada"));
 
         atualizarDashboard();
     }
