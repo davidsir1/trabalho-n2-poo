@@ -15,7 +15,7 @@
         <VBox spacing="6.0">
             <children>
                 <Label styleClass="text-bold" text="Selecione o Animal" />
-                <ComboBox fx:id="cbAnimal" editable="true" maxWidth="1.7976931348623157E308" promptText="Selecione o animal..." />
+                <ComboBox fx:id="cbAnimal" maxWidth="1.7976931348623157E308" promptText="Selecione o animal..." />
             </children>
         </VBox>
         <VBox spacing="6.0">
