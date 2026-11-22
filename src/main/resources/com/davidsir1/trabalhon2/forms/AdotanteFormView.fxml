@@ -23,7 +23,7 @@
                 <VBox spacing="6.0" HBox.hgrow="ALWAYS">
                     <children>
                         <Label styleClass="text-bold" text="Telefone" />
-                        <TextField fx:id="inTelefone" promptText="(61) 99999-9999" />
+                        <TextField fx:id="inTelefone" promptText="6199999999" />
                     </children>
                 </VBox>
                 <VBox spacing="6.0" HBox.hgrow="ALWAYS">

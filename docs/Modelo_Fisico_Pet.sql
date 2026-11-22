@@ -82,8 +82,9 @@ CREATE TABLE adotante (
       id_adotante INT AUTO_INCREMENT PRIMARY KEY,
       nome_adotante VARCHAR(100) NOT NULL,
       telefone VARCHAR(20) NOT NULL,
-      email_adotante VARCHAR(100) NOT NULL,
+      email_adotante VARCHAR(100) NOT NULL UNIQUE,
       endereco VARCHAR(255),
+      cep
       data_cadastro DATE NOT NULL DEFAULT (CURRENT_DATE)
 );
 

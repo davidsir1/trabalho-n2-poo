@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class AdotanteController {
     @FXML private Button btnCadastrarAdotante;
@@ -72,12 +71,10 @@ public class AdotanteController {
             return;
         }
 
-        boolean confirmado = AlertaUtil.exibirConfirmacao(
+        if (!AlertaUtil.exibirConfirmacao(
                 "Confirmar Exclusão",
                 "Excluir adotante: " + adotante,
-                "Tem certeza que deseja excluir este adotante?");
-
-        if (!confirmado) {
+                "Tem certeza que deseja excluir este adotante?")) {
             return;
         }
 
