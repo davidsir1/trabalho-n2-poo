@@ -7,7 +7,6 @@ public class Adocao {
     private static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
     private int id_adocao;
-    private Usuario usuario;
     private Adotante adotante;
     private Animal animal;
     private LocalDateTime data_adocao;
@@ -15,23 +14,20 @@ public class Adocao {
     public Adocao() {
     }
 
-    public Adocao(int id_adocao, Usuario usuario, Adotante adotante, Animal animal, LocalDateTime data_adocao) {
+    public Adocao(int id_adocao, Adotante adotante, Animal animal, LocalDateTime data_adocao) {
         this.id_adocao = id_adocao;
-        this.usuario = usuario;
         this.adotante = adotante;
         this.animal = animal;
         this.data_adocao = data_adocao;
     }
 
-    public Adocao(Usuario usuario, Adotante adotante, Animal animal, LocalDateTime data_adocao) {
-        this.usuario = usuario;
+    public Adocao(Adotante adotante, Animal animal, LocalDateTime data_adocao) {
         this.adotante = adotante;
         this.animal = animal;
         this.data_adocao = data_adocao;
     }
 
-    public Adocao(Usuario usuario, Adotante adotante, Animal animal) {
-        this.usuario = usuario;
+    public Adocao(Adotante adotante, Animal animal) {
         this.adotante = adotante;
         this.animal = animal;
         this.data_adocao = LocalDateTime.now();
@@ -43,14 +39,6 @@ public class Adocao {
 
     public void setId_adocao(int id_adocao) {
         this.id_adocao = id_adocao;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public Adotante getAdotante() {
@@ -75,10 +63,6 @@ public class Adocao {
 
     public void setData_adocao(LocalDateTime data_adocao) {
         this.data_adocao = data_adocao;
-    }
-
-    public String getNomeUsuario() {
-        return usuario.getNome_usuario();
     }
 
     public String getNomeAdotante() {
