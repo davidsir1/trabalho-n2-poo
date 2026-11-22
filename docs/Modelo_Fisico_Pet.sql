@@ -128,16 +128,16 @@ INSERT INTO baia(cod_baia, capacidade) VALUES
 
 -- Inserção de Animais na tabela
 INSERT INTO animal(nome_animal, porte, sexo, status_adocao, id_raca) VALUES
-('Thor', 'Grande', 'Macho', 'DISPONIVEL', 1),
-('Mel', 'Grande', 'Fêmea', 'DISPONIVEL', 2),
-('Pipoca', 'Pequeno', 'Fêmea', 'ADOTADO', 3),
-('Bento', 'Médio', 'Macho', 'DISPONIVEL', 4),
-('Luna', 'Pequeno', 'Fêmea', 'DISPONIVEL', 5),
-('Simba', 'Médio', 'Macho', 'EM_PROCESSO', 6),
-('Nina', 'Pequeno', 'Fêmea', 'DISPONIVEL', 7),
-('Oliver', 'Médio', 'Macho', 'ADOTADO', 8),
-('Piu', 'Pequeno', 'Macho', 'DISPONIVEL', 9),
-('Kiwi', 'Pequeno', 'Fêmea', 'DISPONIVEL', 10),
-('Fred', 'Médio', 'Macho', 'INDISPONIVEL', 11),
-('Bolinha', 'Pequeno', 'Macho', 'DISPONIVEL', 12),
-('Amora', 'Pequeno', 'Fêmea', 'DISPONIVEL', 13);
+('Thor', 'GRANDE', 'MACHO', 'DISPONIVEL', 1),
+('Mel', 'GRANDE', 'FÊMEA', 'DISPONIVEL', 2),
+('Pipoca', 'PEQUENO', 'FÊMEA', 'ADOTADO', 3),
+('Bento', 'MÉDIO', 'MACHO', 'DISPONIVEL', 4),
+('Luna', 'PEQUENO', 'FÊMEA', 'DISPONIVEL', 5),
+('Simba', 'MÉDIO', 'MACHO', 'EM_PROCESSO', 6),
+('Nina', 'PEQUENO', 'FÊMEA', 'DISPONIVEL', 7),
+('Oliver', 'MÉDIO', 'MACHO', 'ADOTADO', 8),
+('Piu', 'PEQUENO', 'MACHO', 'DISPONIVEL', 9),
+('Kiwi', 'PEQUENO', 'FÊMEA', 'DISPONIVEL', 10),
+('Fred', 'MÉDIO', 'MACHO', 'INDISPONIVEL', 11),
+('Bolinha', 'PEQUENO', 'MACHO', 'DISPONIVEL', 12),
+('Amora', 'PEQUENO', 'FÊMEA', 'DISPONIVEL', 13);
