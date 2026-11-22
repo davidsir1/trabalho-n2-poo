@@ -11,24 +11,6 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON adocao_bd.* TO 'laika'@'localhost';
 
 -- Modelo Físico do Pet
 
-DROP TABLE IF EXISTS cargo;
-
-CREATE TABLE cargo (
-	id_cargo INT AUTO_INCREMENT PRIMARY KEY,
-   cargo VARCHAR(60)
-);
-
-DROP TABLE IF EXISTS usuario;
-
-CREATE TABLE usuario (
-       id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-       nome_usuario VARCHAR(100) NOT NULL,
-       email_usuario VARCHAR(100) NOT NULL UNIQUE,
-       senha VARCHAR(255) NOT NULL,
-       id_cargo INT NOT NULL,
-       FOREIGN KEY (id_cargo) REFERENCES cargo(id_cargo)
-);
-
 DROP TABLE IF EXISTS especie;
 
 CREATE TABLE especie (
@@ -84,7 +66,6 @@ CREATE TABLE adotante (
       telefone VARCHAR(20) NOT NULL,
       email_adotante VARCHAR(100) NOT NULL UNIQUE,
       endereco VARCHAR(255),
-      cep
       data_cadastro DATE NOT NULL DEFAULT (CURRENT_DATE)
 );
 
@@ -92,7 +73,6 @@ DROP TABLE IF EXISTS adocao;
 
 CREATE TABLE adocao (
       id_adocao INT AUTO_INCREMENT PRIMARY KEY,
-      id_usuario INT NOT NULL,
       id_adotante INT NOT NULL,
       id_animal INT NOT NULL,
       data_adocao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -103,5 +83,46 @@ CREATE TABLE adocao (
 
 -- Comando de inserção de dados nas tabelas
 
-INSERT INTO cargo(id_cargo, cargo)
-VALUES (1, "Admin"), (2, "Funcionario");
+-- Inserção de animais, espécies e raças na tabela
+INSERT INTO especie(id_especie, especie) VALUES
+(1,'Cachorro'),
+(2,'Gato'),
+(3,'Ave'),
+(4,'Roedor');
+
+INSERT INTO raca(raca, id_especie)
+VALUES
+('Labrador', 1),
+('Golden Retriever', 1),
+('Pinscher', 1),
+('Bulldog Françês', 1),
+('Siamês', 2),
+('Persa', 2),
+('Angorá', 2),
+('Bengal', 2),
+('Calopsita', 3),
+('Agapornis', 3),
+('Cacatua', 3),
+('Hamster Sírio', 4),
+('Porquinho-da-Índia', 4);
+
+-- Inserção de Adotantes na tabela
+INSERT INTO adotante(nome_adotante, telefone, email_adotante, endereco)
+VALUES
+('Mariana Oliveira Santos', '11991230001', 'mariana.santos@exemplo.com.br', 'Rua das Acácias, 142 - Vila Mariana'),
+('Lucas Henrique Ferreira', '21992340002', 'lucas.ferreira@exemplo.com.br', 'Av. Atlântica, 890, Apto 302 - Copacabana'),
+('Camila Costa Almeida', '31993450003', 'camila.almeida@exemplo.com.br', 'Rua Pernambuco, 415 - Savassi'),
+('Rafael Souza Lima', '41994560004', 'rafael.lima@exemplo.com.br', 'Alameda Dr. Carlos de Carvalho, 1020 - Batel'),
+('Beatriz Rocha Mendes', '51995670005', 'beatriz.mendes@exemplo.com.br', 'Rua Padre Chagas, 275, Sala 4 - Moinhos de Vento');
+
+-- Inserção de Baias na tabela
+INSERT INTO baia(cod_baia, capacidade) VALUES
+('B101', 4),
+('B102', 2),
+('B103', 3),
+('B104', 1),
+('B105', 1),
+('B106', 2),
+('B107', 2),
+('B108', 2),
+('B109', 1);
