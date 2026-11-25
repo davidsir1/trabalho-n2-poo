@@ -7,7 +7,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefWidth="230.0" spacing="10.0" style="-fx-background-color: -color-bg-subtle; -fx-border-color: -color-border-muted; -fx-border-width: 0 1 0 0;" xmlns="http://javafx.com/javafx/25.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.view.SidebarController">
+<VBox prefWidth="230.0" spacing="10.0" style="-fx-background-color: -color-bg-subtle; -fx-border-color: -color-border-muted; -fx-border-width: 0 1 0 0;" xmlns="http://javafx.com/javafx/27.0.1.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidsir1.trabalhon2.controller.view.SidebarController">
     <padding>
         <Insets bottom="16.0" left="16.0" right="16.0" top="20.0" />
     </padding>
@@ -50,7 +50,6 @@
                         <String fx:value="flat" />
                     </styleClass>
                 </Button>
-            <Button fx:id="btnUsuarios" alignment="BASELINE_LEFT" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="flat" text="Usuarios" />
                 <Separator prefWidth="200.0">
                     <VBox.margin>
                         <Insets bottom="6.0" top="6.0" />
