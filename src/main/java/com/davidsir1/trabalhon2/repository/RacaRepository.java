@@ -49,7 +49,7 @@ public class RacaRepository {
         String sql = "SELECT r.id_raca, r.raca, e.id_especie, e.especie " +
                 "FROM raca r " +
                 "INNER JOIN especie e ON r.id_especie = e.id_especie " +
-                "ORDER BY r.raca;";
+                "ORDER BY r.id_raca;";
         List<Raca> racas = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection();

@@ -43,7 +43,7 @@ public class EspecieRepository {
     }
 
     public List<Especie> listarTodos() throws SQLException {
-        String sql = "SELECT id_especie, especie FROM especie ORDER BY especie;";
+        String sql = "SELECT id_especie, especie FROM especie ORDER BY id_especie;";
         List<Especie> especies = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection();
