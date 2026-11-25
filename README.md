@@ -20,7 +20,6 @@ PASS=
 - Java 25
 - [AtlantaFX](https://github.com/mkpaz/atlantafx)
 - [Scene Builder](https://gluonhq.com/products/scene-builder/)
-- [jBCrypt](https://github.com/jeremyh/jBCrypt)
 
 # Integrantes
 
