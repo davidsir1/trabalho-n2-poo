@@ -3,7 +3,6 @@ module com.davidsir1.trabalhon2 {
     requires javafx.fxml;
     requires atlantafx.base;
     requires java.sql;
-    requires jbcrypt;
 
     opens com.davidsir1.trabalhon2 to javafx.fxml;
     exports com.davidsir1.trabalhon2;
