@@ -90,7 +90,7 @@ public class BaiaController {
             AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados inválidos", e.getMessage());
         } catch (SQLException e) {
             AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Não foi possível excluir",
-                    "A baia pode possuir registros de alocação vinculados.\n" + e.getMessage());
+                    "A baia pode possuir registros de alocação vinculados.");
         }
     }
 

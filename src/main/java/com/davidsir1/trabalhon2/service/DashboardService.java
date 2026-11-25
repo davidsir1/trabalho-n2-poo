@@ -4,6 +4,7 @@ import com.davidsir1.trabalhon2.model.Adocao;
 import com.davidsir1.trabalhon2.repository.AdocaoRepository;
 import com.davidsir1.trabalhon2.repository.DashboardRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class DashboardService {
@@ -31,7 +32,7 @@ public class DashboardService {
         return dashboardRepository.contarTotalBaias();
     }
 
-    public List<Adocao> listarAdocoesRecentes() {
+    public List<Adocao> listarAdocoesRecentes() throws SQLException {
         return adocaoRepository.listarAdocoesRecentes();
     }
 }

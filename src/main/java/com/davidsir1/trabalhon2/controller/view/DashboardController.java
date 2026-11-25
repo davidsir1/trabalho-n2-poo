@@ -2,12 +2,16 @@ package com.davidsir1.trabalhon2.controller.view;
 
 import com.davidsir1.trabalhon2.model.Adocao;
 import com.davidsir1.trabalhon2.service.DashboardService;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.sql.SQLException;
 
 public class DashboardController {
     @FXML private Label lblAnimaisDisponiveis;
@@ -37,9 +41,13 @@ public class DashboardController {
         lblAdocoesRealizadas.setText(String.valueOf(dashboardService.getTotalAdocoesRealizadas()));
         lblAdotantesCadastrados.setText(String.valueOf(dashboardService.getTotalAdotantesCadastrados()));
 
-        tabelaAdocoesRecentes.setItems(
-                FXCollections.observableArrayList(dashboardService.listarAdocoesRecentes())
-        );
+        try {
+            tabelaAdocoesRecentes.setItems(
+                    FXCollections.observableArrayList(dashboardService.listarAdocoesRecentes())
+            );
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao listar as adoções recentes.");
+        }
     }
 
 }

@@ -3,6 +3,8 @@ package com.davidsir1.trabalhon2.service;
 import com.davidsir1.trabalhon2.repository.AdotanteRepository;
 import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
 import com.davidsir1.trabalhon2.model.Adotante;
+
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 import java.util.List;
 
@@ -57,7 +59,7 @@ public class AdotanteService {
     }
 
     public void cadastrar(Adotante adotante)
-        throws DadosInvalidosException {
+        throws DadosInvalidosException, SQLException {
 
         try {
             validarDados(adotante);
@@ -69,7 +71,7 @@ public class AdotanteService {
     }
 
     public void atualizar(Adotante adotante)
-            throws DadosInvalidosException {
+            throws DadosInvalidosException, SQLException {
 
         validarDados(adotante);
 
@@ -84,7 +86,7 @@ public class AdotanteService {
     }
 
     public void excluir(int idAdotante)
-            throws DadosInvalidosException {
+            throws DadosInvalidosException, SQLException {
 
         if (idAdotante <= 0) {
             throw new DadosInvalidosException("ID do adotante inválido.");
@@ -99,11 +101,11 @@ public class AdotanteService {
         adotanteRepository.excluir(idAdotante);
     }
 
-    public List<Adotante> listarTodos() {
+    public List<Adotante> listarTodos() throws SQLException {
             return adotanteRepository.listarTodos();
     }
 
-    public List<Adotante> buscarPorNome(String nome) {
+    public List<Adotante> buscarPorNome(String nome) throws SQLException {
 
         if (nome == null || nome.trim().isEmpty()) {
             return listarTodos();

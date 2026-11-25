@@ -57,7 +57,6 @@ public class AnimalFormController {
             todasRacas = especieRacaService.listarRacas();
             cbRaca.setItems(FXCollections.observableArrayList(todasRacas));
         } catch (SQLException e) {
-            System.err.println("Erro ao listar as raças: " + e.getMessage());
             AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", "Ocorreu um erro ao listar as raças.");
             cancelar();
         }
@@ -79,7 +78,6 @@ public class AnimalFormController {
                 ));
                 cbRaca.setValue(animalEdicao.getRaca());
             } catch (SQLException e) {
-                System.err.println("Erro ao filtrar as raças por especie: " + e.getMessage());
                 AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Erro no banco de dados",
                         "Ocorreu um erro ao filtar as raças por espécie.");
                 cancelar();
@@ -101,7 +99,6 @@ public class AnimalFormController {
         try {
             racasFiltradas = especieRacaService.listarRacaPorEspecie(especieSelecionada.getEspecie());
         } catch (SQLException e) {
-            System.err.println("Erro ao filtrar as raças por especie: " + e.getMessage());
             AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Erro no banco de dados",
                     "Ocorreu um erro ao filtar as raças por espécie.");
             cancelar();
@@ -136,6 +133,8 @@ public class AnimalFormController {
             cancelar();
         } catch (DadosInvalidosException e) {
             AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados Inválidos", e.getMessage());
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no banco de dados", "Ocorreu um erro ao cadastrar/atualizar o animal.");
         }
     }
 

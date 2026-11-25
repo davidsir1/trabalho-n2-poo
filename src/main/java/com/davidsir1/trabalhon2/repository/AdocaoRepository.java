@@ -2,6 +2,8 @@ package com.davidsir1.trabalhon2.repository;
 
 import com.davidsir1.trabalhon2.config.DatabaseConnection;
 import com.davidsir1.trabalhon2.model.*;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdocaoRepository {
-    public void registrarAdocao(Adocao adocao) {
+    public void registrarAdocao(Adocao adocao) throws SQLException {
         String sql_insert = "INSERT INTO adocao (id_adotante, id_animal, data_adocao) VALUES " +
                 "(?, ?, ?);";
         String sql_update_animal = "UPDATE animal SET status_adocao = 'ADOTADO' WHERE id_animal = ?;";
@@ -35,12 +37,10 @@ public class AdocaoRepository {
             } finally {
                 conn.setAutoCommit(true);
             }
-        } catch (SQLException e) {
-            System.err.println("Erro ao registrar adoção no banco de dados: " + e.getMessage());
         }
     }
 
-    public List<Adocao> listarAdocoesRecentes() {
+    public List<Adocao> listarAdocoesRecentes() throws SQLException {
         String sql = "SELECT ad.id_adocao, ad.data_adocao, " +
                 "adt.id_adotante, adt.nome_adotante, adt.telefone, adt.email_adotante, adt.endereco, adt.data_cadastro, " +
                 "an.id_animal, an.nome_animal, an.porte, an.sexo, an.status_adocao, " +
@@ -90,9 +90,6 @@ public class AdocaoRepository {
                         dataAdocao
                 ));
             }
-        } catch (SQLException e) {
-            System.err.println("Erro ao listar adoções recentes: " + e.getMessage());
-            return null;
         }
 
         return adocoes;

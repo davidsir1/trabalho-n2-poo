@@ -30,21 +30,9 @@ public class AlocacaoFormController {
                     FXCollections.observableArrayList(baiaService.listarAnimais())
             );
         } catch (SQLException e) {
-            System.err.println("Erro ao listar os animais: " + e.getMessage());
             AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", e.getMessage());
             cancelar();
         }
-        /*
-        try {
-            cbBaia.setItems(
-                    FXCollections.observableArrayList(baiaService.listarBaias())
-            );
-        } catch (SQLException e) {
-            System.err.println("Erro ao listar as baias: " + e.getMessage());
-            exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", e.getMessage());
-            cancelar();
-        }
-         */
     }
 
     public void setCbBaia(Baia baia) {

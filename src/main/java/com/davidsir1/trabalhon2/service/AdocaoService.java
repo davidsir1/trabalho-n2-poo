@@ -8,6 +8,7 @@ import com.davidsir1.trabalhon2.repository.AdocaoRepository;
 import com.davidsir1.trabalhon2.repository.AdotanteRepository;
 import com.davidsir1.trabalhon2.repository.AnimalRepository;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -24,15 +25,15 @@ public class AdocaoService {
         this.adotanteRepository = new AdotanteRepository();
     }
 
-    public List<Animal> listarAnimaisDisponiveis() {
+    public List<Animal> listarAnimaisDisponiveis() throws SQLException {
         return animalRepository.buscarPorStatusAdocao("DISPONIVEL");
     }
 
-    public List<Adotante> listarAdotantes() {
+    public List<Adotante> listarAdotantes() throws SQLException {
         return adotanteRepository.listarTodos();
     }
 
-    public void registrarAdocao(Animal animal, Adotante adotante, LocalDate dataSelecionada) throws DadosInvalidosException {
+    public void registrarAdocao(Animal animal, Adotante adotante, LocalDate dataSelecionada) throws DadosInvalidosException, SQLException {
         if (adotante == null) {
             throw new DadosInvalidosException("Selecione um adotante para continuar.");
         }

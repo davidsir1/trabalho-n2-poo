@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 
 public class AnimalController {
     @FXML private TextField inBuscarAnimalNome;
@@ -98,6 +99,8 @@ public class AnimalController {
             carregarAnimais();
         } catch (DadosInvalidosException e) {
             AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Não permitido", e.getMessage());
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao excluir o animal. Verifique se ele possui um registro vinculado.");
         }
     }
 
@@ -110,13 +113,21 @@ public class AnimalController {
             status = null;
         }
 
-        tabelaAnimal.setItems(FXCollections.observableArrayList(
-                animalService.buscarPorNomeEStatus(nome, status)
-        ));
+        try {
+            tabelaAnimal.setItems(FXCollections.observableArrayList(
+                    animalService.buscarPorNomeEStatus(nome, status)
+            ));
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao filtrar os animais.");
+        }
     }
 
     private void carregarAnimais() {
-        tabelaAnimal.setItems(FXCollections.observableArrayList(animalService.listarTodos()));
+        try {
+            tabelaAnimal.setItems(FXCollections.observableArrayList(animalService.listarTodos()));
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao carregar os animais.");
+        }
     }
 
     private void abrirFormulario(Animal animal, String titulo) {

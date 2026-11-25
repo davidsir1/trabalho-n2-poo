@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 public class AdotanteFormController {
     @FXML private TextField inNomeAdotante;
     @FXML private TextField inTelefone;
@@ -60,6 +62,8 @@ public class AdotanteFormController {
             cancelar();
         } catch (DadosInvalidosException e) {
             AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados Inválidos", e.getMessage());
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao cadastrar/atualizar o adotante.");
         }
     }
 

@@ -2,6 +2,8 @@ package com.davidsir1.trabalhon2.repository;
 
 import com.davidsir1.trabalhon2.config.DatabaseConnection;
 import com.davidsir1.trabalhon2.model.Adotante;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
+import javafx.scene.control.Alert;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +14,7 @@ import java.util.List;
 
 public class AdotanteRepository {
 
-    public void salvar(Adotante adotante) {
+    public void salvar(Adotante adotante) throws SQLException {
 
         String sql = "INSERT INTO adotante " +
                 "(nome_adotante, telefone, email_adotante, endereco) " +
@@ -29,14 +31,10 @@ public class AdotanteRepository {
             stmt.executeUpdate();
 
 
-        } catch (SQLException e) {
-            System.err.println("erro ao cadastrar adotante no banco de dados " + e.getMessage());
-
         }
-
     }
 
-    public void atualizar(Adotante adotante) {
+    public void atualizar(Adotante adotante) throws SQLException {
 
         String sql = "UPDATE adotante SET " +
                 "nome_adotante = ?, " +
@@ -56,12 +54,10 @@ public class AdotanteRepository {
 
             stmt.executeUpdate();
 
-        } catch (SQLException e) {
-            System.err.println("Erro ao atualizar adotante: " + e.getMessage());
         }
     }
 
-    public void excluir(int idAdotante) {
+    public void excluir(int idAdotante) throws SQLException {
 
         String sql = "DELETE FROM adotante WHERE id_adotante = ?";
 
@@ -72,13 +68,10 @@ public class AdotanteRepository {
 
             stmt.executeUpdate();
 
-        } catch (SQLException e) {
-            System.err.println("Erro ao excluir adotante: " + e.getMessage());
         }
-
     }
 
-    public List<Adotante> listarTodos() {
+    public List<Adotante> listarTodos() throws SQLException {
 
         List<Adotante> adotantes = new ArrayList<>();
 
@@ -104,14 +97,12 @@ public class AdotanteRepository {
                 adotantes.add(adotante);
             }
 
-        } catch (SQLException e) {
-            System.err.println("Erro ao listar adotantes: " + e.getMessage());
         }
 
         return adotantes;
     }
 
-    public List<Adotante> buscarPorNome(String nome) {
+    public List<Adotante> buscarPorNome(String nome) throws SQLException {
 
         List<Adotante> adotantes = new ArrayList<>();
 
@@ -142,14 +133,12 @@ public class AdotanteRepository {
                 }
             }
 
-        } catch (SQLException e) {
-            System.err.println("Erro ao buscar adotantes: " + e.getMessage());
         }
 
         return adotantes;
     }
 
-    public boolean possuiAdocao(int idAdotante) {
+    public boolean possuiAdocao(int idAdotante) throws SQLException {
 
         String sql = "SELECT 1 FROM adocao WHERE id_adotante = ?";
 
@@ -162,12 +151,8 @@ public class AdotanteRepository {
                 return rs.next();
             }
 
-        } catch (SQLException e) {
-            System.err.println("Erro ao verificar adoções: " + e.getMessage());
-            throw new RuntimeException("Não foi possível verificar as adoções.", e);
         }
     }
-
 }
 
 

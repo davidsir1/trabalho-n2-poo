@@ -1,6 +1,8 @@
 package com.davidsir1.trabalhon2.repository;
 
 import com.davidsir1.trabalhon2.config.DatabaseConnection;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
+import javafx.scene.control.Alert;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,6 +39,7 @@ public class DashboardRepository {
                 return rs.getInt("total");
         } catch (SQLException e) {
             System.err.println(mensagemErro + ": " + e.getMessage());
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", mensagemErro);
         }
 
         return 0;

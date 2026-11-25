@@ -4,6 +4,8 @@ import com.davidsir1.trabalhon2.config.DatabaseConnection;
 import com.davidsir1.trabalhon2.model.Animal;
 import com.davidsir1.trabalhon2.model.Especie;
 import com.davidsir1.trabalhon2.model.Raca;
+import com.davidsir1.trabalhon2.utils.AlertaUtil;
+import javafx.scene.control.Alert;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +16,7 @@ import java.util.List;
 
 public class AnimalRepository {
 
-    public void salvar(Animal animal) {
+    public void salvar(Animal animal) throws SQLException {
         String sql = "INSERT INTO animal (nome_animal, porte, sexo, status_adocao, id_raca) " +
                 "VALUES (?, ?, ?, ?, ?);";
 
@@ -27,12 +29,10 @@ public class AnimalRepository {
             stmt.setString(4, animal.getStatus_adocao());
             stmt.setInt(5, animal.getRaca().getId_raca());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao cadastrar animal no banco de dados: " + e.getMessage());
         }
     }
 
-    public void atualizar(Animal animal) {
+    public void atualizar(Animal animal) throws SQLException {
         String sql = "UPDATE animal SET nome_animal = ?, porte = ?, sexo = ?, " +
                 "status_adocao = ?, id_raca = ? WHERE id_animal = ?;";
 
@@ -46,12 +46,10 @@ public class AnimalRepository {
             stmt.setInt(5, animal.getRaca().getId_raca());
             stmt.setInt(6, animal.getId_animal());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao atualizar animal no banco de dados: " + e.getMessage());
         }
     }
 
-    public void excluir(int idAnimal) {
+    public void excluir(int idAnimal) throws SQLException {
         String sql = "DELETE FROM animal WHERE id_animal = ?;";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -59,24 +57,22 @@ public class AnimalRepository {
 
             stmt.setInt(1, idAnimal);
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao excluir animal do banco de dados: " + e.getMessage());
         }
     }
 
-    public List<Animal> listarTodos() {
+    public List<Animal> listarTodos() throws SQLException {
         return consultar(null, null);
     }
 
-    public List<Animal> buscarPorNomeEStatus(String nome, String status) {
+    public List<Animal> buscarPorNomeEStatus(String nome, String status) throws SQLException{
         return consultar(nome, status);
     }
 
-    public List<Animal> buscarPorStatusAdocao(String status) {
+    public List<Animal> buscarPorStatusAdocao(String status) throws SQLException {
         return consultar(null, status);
     }
 
-    private List<Animal> consultar(String nome, String status) {
+    private List<Animal> consultar(String nome, String status) throws SQLException {
         StringBuilder sql = new StringBuilder(
                 "SELECT a.id_animal, a.nome_animal, a.porte, a.sexo, a.status_adocao, " +
                 "r.id_raca, r.raca, e.id_especie, e.especie " +
@@ -135,8 +131,6 @@ public class AnimalRepository {
                     animais.add(animal);
                 }
             }
-        } catch (SQLException e) {
-            System.err.println("Erro ao consultar animais no banco de dados: " + e.getMessage());
         }
 
         return animais;

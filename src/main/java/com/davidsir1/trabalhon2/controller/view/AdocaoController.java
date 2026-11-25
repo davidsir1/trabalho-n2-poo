@@ -56,51 +56,51 @@ public class AdocaoController {
             carregarListas();
         } catch (DadosInvalidosException e) {
             AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Dados Inválidos", e.getMessage());
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao registrar adoção.");
         }
     }
 
     @FXML
     public void atualizarResumoAdotante() {
-        try {
-            Adotante adotante = selAdotante.getValue() != null ? selAdotante.getValue() : null;
-            if (adotante != null) {
-                adotanteSelecionado.setText(adotante.getNome_adotante());
-            } else {
-                adotanteSelecionado.setText("Nenhum selecionado");
-            }
-        } catch (ClassCastException e) {
-            System.err.println(e.getMessage());
+        Adotante adotante = selAdotante.getValue() != null ? selAdotante.getValue() : null;
+        if (adotante != null) {
+            adotanteSelecionado.setText(adotante.getNome_adotante());
+        } else {
             adotanteSelecionado.setText("Nenhum selecionado");
         }
     }
 
     @FXML
     public void atualizarResumoAnimal() {
-        try {
-            Animal animal = selAnimalDisponivel.getValue() != null ? selAnimalDisponivel.getValue() : null;
-            if (animal != null) {
-                animalSelecionado.setText(animal.getNome_animal());
-            } else {
-                animalSelecionado.setText("Nenhum selecionado");
-            }
-        } catch (ClassCastException e) {
-            System.err.println(e.getMessage());
+        Animal animal = selAnimalDisponivel.getValue() != null ? selAnimalDisponivel.getValue() : null;
+        if (animal != null) {
+            animalSelecionado.setText(animal.getNome_animal());
+        } else {
             animalSelecionado.setText("Nenhum selecionado");
         }
     }
 
     private void carregarListas() {
-        List<Adotante> adotantes = adocaoService.listarAdotantes();
-        if (!adotantes.isEmpty())
-            selAdotante.setItems(FXCollections.observableArrayList(adotantes));
-        else
-            selAdotante.setDisable(true);
+        try {
+            List<Adotante> adotantes = adocaoService.listarAdotantes();
+            if (!adotantes.isEmpty())
+                selAdotante.setItems(FXCollections.observableArrayList(adotantes));
+            else
+                selAdotante.setDisable(true);
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao carregar os adotantes.");
+        }
 
-        List<Animal> animaisDisponiveis = adocaoService.listarAnimaisDisponiveis();
-        if (!animaisDisponiveis.isEmpty())
-            selAnimalDisponivel.setItems(FXCollections.observableArrayList(animaisDisponiveis));
-        else
-            selAnimalDisponivel.setDisable(true);
+        try {
+            List<Animal> animaisDisponiveis = adocaoService.listarAnimaisDisponiveis();
+            if (!animaisDisponiveis.isEmpty())
+                selAnimalDisponivel.setItems(FXCollections.observableArrayList(animaisDisponiveis));
+            else
+                selAnimalDisponivel.setDisable(true);
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao carregar os animais disponíveis para adoção.");
+        }
     }
 
     private void limparFormulario() {

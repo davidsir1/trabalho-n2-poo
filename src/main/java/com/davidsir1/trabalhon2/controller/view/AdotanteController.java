@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 
 public class AdotanteController {
     @FXML private Button btnCadastrarAdotante;
@@ -86,17 +87,27 @@ public class AdotanteController {
             carregarAdotantes();
         } catch (DadosInvalidosException e) {
             AlertaUtil.exibirAlerta(Alert.AlertType.WARNING, "Não permitido", e.getMessage());
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao exluir o adotante. Verifique se ele possui registros vinculados.");
         }
     }
 
     @FXML
     public void buscarAdotante() {
         String nome = inBuscarAdotanteNome.getText();
-        tabelaAdotante.setItems(FXCollections.observableArrayList(adotanteService.buscarPorNome(nome)));
+        try {
+            tabelaAdotante.setItems(FXCollections.observableArrayList(adotanteService.buscarPorNome(nome)));
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao buscar adotante.");
+        }
     }
 
     private void carregarAdotantes() {
-        tabelaAdotante.setItems(FXCollections.observableArrayList(adotanteService.listarTodos()));
+        try {
+            tabelaAdotante.setItems(FXCollections.observableArrayList(adotanteService.listarTodos()));
+        } catch (SQLException e) {
+            AlertaUtil.exibirAlerta(Alert.AlertType.ERROR, "Erro no Banco de Dados", "Ocorreu um erro ao carregar os adotantes.");
+        }
     }
 
     private void abrirFormulario(Adotante adotante, String titulo) {

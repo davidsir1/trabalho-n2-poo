@@ -4,6 +4,7 @@ import com.davidsir1.trabalhon2.exception.DadosInvalidosException;
 import com.davidsir1.trabalhon2.model.Animal;
 import com.davidsir1.trabalhon2.repository.AnimalRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,7 +16,7 @@ public class AnimalService {
         this.animalRepository = new AnimalRepository();
     }
 
-    public void cadastrar(Animal animal) throws DadosInvalidosException {
+    public void cadastrar(Animal animal) throws DadosInvalidosException, SQLException {
         validarAnimal(animal);
 
         animal.setNome_animal(animal.getNome_animal().trim());
@@ -26,7 +27,7 @@ public class AnimalService {
         animalRepository.salvar(animal);
     }
 
-    public void atualizar(Animal animal) throws DadosInvalidosException {
+    public void atualizar(Animal animal) throws DadosInvalidosException, SQLException {
         validarAnimal(animal);
 
         if (animal.getId_animal() <= 0) {
@@ -40,7 +41,7 @@ public class AnimalService {
         animalRepository.atualizar(animal);
     }
 
-    public void excluir(Animal animal) throws DadosInvalidosException {
+    public void excluir(Animal animal) throws DadosInvalidosException, SQLException {
         if (animal == null) {
             throw new DadosInvalidosException("Selecione um animal para excluir.");
         }
@@ -52,11 +53,11 @@ public class AnimalService {
         animalRepository.excluir(animal.getId_animal());
     }
 
-    public List<Animal> listarTodos() {
+    public List<Animal> listarTodos() throws SQLException {
         return animalRepository.listarTodos();
     }
 
-    public List<Animal> buscarPorNomeEStatus(String nome, String status) {
+    public List<Animal> buscarPorNomeEStatus(String nome, String status) throws SQLException {
         return animalRepository.buscarPorNomeEStatus(nome, status);
     }
 
