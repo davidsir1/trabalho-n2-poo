@@ -78,8 +78,8 @@ public class AnimalService {
         }
 
         String porte = animal.getPorte().trim().toUpperCase(Locale.ROOT);
-        if (!porte.equals("GRANDE") && !porte.equals("MEDIO") && !porte.equals("PEQUENO")) {
-            throw new DadosInvalidosException("O porte deve ser GRANDE, MEDIO ou PEQUENO.");
+        if (!porte.equals("GRANDE") && !porte.equals("MÉDIO") && !porte.equals("PEQUENO")) {
+            throw new DadosInvalidosException("O porte deve ser GRANDE, MÉDIO ou PEQUENO.");
         }
 
         if (animal.getSexo() == null || animal.getSexo().trim().isEmpty()) {

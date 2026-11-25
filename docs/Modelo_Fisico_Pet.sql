@@ -133,7 +133,7 @@ INSERT INTO animal(nome_animal, porte, sexo, status_adocao, id_raca) VALUES
 ('Pipoca', 'PEQUENO', 'FÊMEA', 'ADOTADO', 3),
 ('Bento', 'MÉDIO', 'MACHO', 'DISPONIVEL', 4),
 ('Luna', 'PEQUENO', 'FÊMEA', 'DISPONIVEL', 5),
-('Simba', 'MÉDIO', 'MACHO', 'EM_PROCESSO', 6),
+('Simba', 'MÉDIO', 'MACHO', 'EM TRATAMENTO', 6),
 ('Nina', 'PEQUENO', 'FÊMEA', 'DISPONIVEL', 7),
 ('Oliver', 'MÉDIO', 'MACHO', 'ADOTADO', 8),
 ('Piu', 'PEQUENO', 'MACHO', 'DISPONIVEL', 9),
