@@ -57,6 +57,7 @@ public class BaiaController {
     @FXML
     public void adicionarBaia() {
         abrirFormularioBaia(null, "Cadastrar Baia");
+        atualizarTabelas();
     }
 
     @FXML
