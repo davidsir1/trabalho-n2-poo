@@ -53,6 +53,9 @@ public class BaiaService {
         if (baiaRepository.contarAnimaisAlocados(baia.getId_baia()) >= baia.getCapacidade()) {
             throw new DadosInvalidosException("A baia selecionada está lotada.");
         }
+        if (animal.getStatus_adocao().equals("ADOTADO")) {
+            throw new DadosInvalidosException("Não é possível alocar um animal já adotado.");
+        }
 
         alocacaoAnimalRepository.salvar(new AlocacaoAnimal(animal, baia));
     }
